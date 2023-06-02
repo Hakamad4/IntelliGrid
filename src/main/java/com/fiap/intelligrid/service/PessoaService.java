@@ -6,6 +6,7 @@ import com.fiap.intelligrid.domain.response.PessoaResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PessoaService {
@@ -22,5 +23,17 @@ public class PessoaService {
 
     public Pessoa save(Pessoa pessoa) {
         return pessoaRepository.save(pessoa);
+    }
+
+    public Pessoa getById(Long id) {
+        return pessoaRepository.getReferenceById(id);
+    }
+
+    public Optional<Pessoa> findById(Long id) {
+        return pessoaRepository.findById(id);
+    }
+
+    public void delete(Pessoa pessoa) {
+        pessoaRepository.delete(pessoa);
     }
 }

@@ -1,6 +1,7 @@
 package com.fiap.intelligrid.domain.entity;
 
 import com.fiap.intelligrid.domain.request.PessoaRequest;
+import com.fiap.intelligrid.domain.response.PessoaAtualizacaoRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,5 +29,15 @@ public class Pessoa {
         this.dataNascimento = pessoaRequest.dataNascimento();
         this.genero = pessoaRequest.genero();
         this.email = pessoaRequest.email();
+    }
+
+    public void atualizacaoPessoa(PessoaAtualizacaoRequest pessoaAtualizacaoResponse) {
+
+        if (pessoaAtualizacaoResponse.nome() != null){
+            this.nome = pessoaAtualizacaoResponse.nome();
+        }
+        if(pessoaAtualizacaoResponse.email() != null){
+            this.email = pessoaAtualizacaoResponse.email();
+        }
     }
 }

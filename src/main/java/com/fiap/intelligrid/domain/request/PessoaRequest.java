@@ -15,8 +15,6 @@ public record PessoaRequest(
         LocalDate dataNascimento,
         @NotNull
         Genero genero,
-
         @NotBlank
-        String email
-        ) {
+        String email) {
 }
