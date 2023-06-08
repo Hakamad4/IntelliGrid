@@ -31,12 +31,14 @@ public class Pessoa {
         this.email = pessoaRequest.email();
     }
 
+
+
     public void atualizacaoPessoa(PessoaAtualizacaoRequest pessoaAtualizacaoResponse) {
 
-        if (pessoaAtualizacaoResponse.nome() != null){
+        if (pessoaAtualizacaoResponse.nome() != null) {
             this.nome = pessoaAtualizacaoResponse.nome();
         }
-        if(pessoaAtualizacaoResponse.email() != null){
+        if(pessoaAtualizacaoResponse.email() != null) {
             this.email = pessoaAtualizacaoResponse.email();
         }
     }

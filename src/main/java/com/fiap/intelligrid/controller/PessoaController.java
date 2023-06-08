@@ -45,8 +45,12 @@ public class PessoaController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid PessoaAtualizacaoRequest pessoaRequest){
-        Pessoa pessoa = pessoaService.getById(pessoaRequest.id());
+    public ResponseEntity atualizarPessoa(@RequestBody @Valid PessoaAtualizacaoRequest pessoaRequest) {
+        Optional<Pessoa> pessoaOptional = pessoaService.findById(pessoaRequest.id());
+        if(pessoaOptional.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Pessoa pessoa = pessoaOptional.get();
         pessoa.atualizacaoPessoa(pessoaRequest);
 
         return ResponseEntity.ok(new PessoaResponse(pessoa));
@@ -54,7 +58,7 @@ public class PessoaController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity excluir(@PathVariable Long id){
+    public ResponseEntity excluirPessoa(@PathVariable Long id) {
         Optional<Pessoa> pessoaOptional = pessoaService.findById(id);
         if(pessoaOptional.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

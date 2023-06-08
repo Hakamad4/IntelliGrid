@@ -25,9 +25,6 @@ public class PessoaService {
         return pessoaRepository.save(pessoa);
     }
 
-    public Pessoa getById(Long id) {
-        return pessoaRepository.getReferenceById(id);
-    }
 
     public Optional<Pessoa> findById(Long id) {
         return pessoaRepository.findById(id);
