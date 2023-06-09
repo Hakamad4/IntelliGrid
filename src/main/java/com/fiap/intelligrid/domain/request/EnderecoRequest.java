@@ -1,26 +1,30 @@
 package com.fiap.intelligrid.domain.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fiap.intelligrid.domain.entity.Endereco;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class EnderecoRequest {
+public record EnderecoRequest(
+		@JsonProperty(required = true) String cep,
+		String logradouro,
+		String numero,
+		String bairro,
+		String cidade,
+		String estado,
+		String complemento
+) {
 
-	@JsonProperty(required = true)
-	private String cep;
-
-	private String logradouro;
-
-	private String numero;
-
-	private String bairro;
-
-	private String cidade;
-
-	private String estado;
-
-	private String complemento;
-
+	public Endereco toEntity() {
+		return new Endereco(
+				null,
+				cep,
+				logradouro,
+				numero,
+				bairro,
+				cidade,
+				estado,
+				complemento
+		);
+	}
 }
