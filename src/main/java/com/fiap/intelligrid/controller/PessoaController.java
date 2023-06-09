@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,14 +25,14 @@ public class PessoaController {
     }
 
     @GetMapping
-    public ResponseEntity buscarPessoas() {
-        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.findAll());
+    public ResponseEntity<List<PessoaResponse>> buscarPessoas() {
+        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.buscarTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity buscarPessoaPorId(@PathVariable Long id) {
-        Optional<Pessoa> pessoaOptional = pessoaService.findById(id);
-        if(pessoaOptional.isEmpty()){
+    public ResponseEntity<PessoaResponse> buscarPessoaPorId(@PathVariable Long id) {
+        Optional<Pessoa> pessoaOptional = pessoaService.buscarPorId(id);
+        if(pessoaOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.ok(new PessoaResponse(pessoaOptional.get()));
@@ -39,15 +40,15 @@ public class PessoaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrarPessoa(@RequestBody @Valid PessoaRequest pessoaRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.save(new Pessoa(pessoaRequest)));
+    public ResponseEntity<Pessoa> cadastrarPessoa(@RequestBody @Valid PessoaRequest pessoaRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.salvar(new Pessoa(pessoaRequest)));
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizarPessoa(@RequestBody @Valid PessoaAtualizacaoRequest pessoaRequest) {
-        Optional<Pessoa> pessoaOptional = pessoaService.findById(pessoaRequest.id());
-        if(pessoaOptional.isEmpty()){
+    public ResponseEntity<PessoaResponse> atualizarPessoa(@RequestBody @Valid PessoaAtualizacaoRequest pessoaRequest) {
+        Optional<Pessoa> pessoaOptional = pessoaService.buscarPorId(pessoaRequest.id());
+        if(pessoaOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         Pessoa pessoa = pessoaOptional.get();
@@ -58,12 +59,12 @@ public class PessoaController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity excluirPessoa(@PathVariable Long id) {
-        Optional<Pessoa> pessoaOptional = pessoaService.findById(id);
-        if(pessoaOptional.isEmpty()){
+    public ResponseEntity<Pessoa> excluirPessoa(@PathVariable Long id) {
+        Optional<Pessoa> pessoaOptional = pessoaService.buscarPorId(id);
+        if(pessoaOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        pessoaService.delete(pessoaOptional.get());
+        pessoaService.deletar(pessoaOptional.get());
         return ResponseEntity.ok().build();
     }
 }

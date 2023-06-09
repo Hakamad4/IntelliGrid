@@ -17,20 +17,20 @@ public class PessoaService {
         this.pessoaRepository = pessoaRepository;
     }
 
-    public List<PessoaResponse> findAll() {
+    public List<PessoaResponse> buscarTodos() {
         return pessoaRepository.findAll().stream().map(PessoaResponse::new).toList();
     }
 
-    public Pessoa save(Pessoa pessoa) {
+    public Pessoa salvar(Pessoa pessoa) {
         return pessoaRepository.save(pessoa);
     }
 
 
-    public Optional<Pessoa> findById(Long id) {
+    public Optional<Pessoa> buscarPorId(Long id) {
         return pessoaRepository.findById(id);
     }
 
-    public void delete(Pessoa pessoa) {
+    public void deletar(Pessoa pessoa) {
         pessoaRepository.delete(pessoa);
     }
 }
