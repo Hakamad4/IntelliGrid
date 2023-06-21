@@ -6,10 +6,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -31,15 +33,4 @@ public class Pessoa {
         this.email = pessoaRequest.email();
     }
 
-
-
-    public void atualizacaoPessoa(PessoaAtualizacaoRequest pessoaAtualizacaoResponse) {
-
-        if (pessoaAtualizacaoResponse.nome() != null) {
-            this.nome = pessoaAtualizacaoResponse.nome();
-        }
-        if(pessoaAtualizacaoResponse.email() != null) {
-            this.email = pessoaAtualizacaoResponse.email();
-        }
-    }
 }

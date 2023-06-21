@@ -4,6 +4,7 @@ import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.domain.request.PessoaRequest;
 import com.fiap.intelligrid.domain.response.PessoaAtualizacaoRequest;
 import com.fiap.intelligrid.domain.response.PessoaResponse;
+import com.fiap.intelligrid.utils.exceptions.EntidadeNaoEncontradaException;
 import com.fiap.intelligrid.service.PessoaService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -31,11 +32,7 @@ public class PessoaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PessoaResponse> buscarPessoaPorId(@PathVariable Long id) {
-        Optional<Pessoa> pessoaOptional = pessoaService.buscarPorId(id);
-        if(pessoaOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return ResponseEntity.ok(new PessoaResponse(pessoaOptional.get()));
+        return ResponseEntity.ok(new PessoaResponse(pessoaService.buscarPorId(id)));
     }
 
     @PostMapping
@@ -47,24 +44,14 @@ public class PessoaController {
     @PutMapping
     @Transactional
     public ResponseEntity<PessoaResponse> atualizarPessoa(@RequestBody @Valid PessoaAtualizacaoRequest pessoaRequest) {
-        Optional<Pessoa> pessoaOptional = pessoaService.buscarPorId(pessoaRequest.id());
-        if(pessoaOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        Pessoa pessoa = pessoaOptional.get();
-        pessoa.atualizacaoPessoa(pessoaRequest);
-
+        Pessoa pessoa = pessoaService.atualizarPessoa(pessoaRequest);
         return ResponseEntity.ok(new PessoaResponse(pessoa));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Pessoa> excluirPessoa(@PathVariable Long id) {
-        Optional<Pessoa> pessoaOptional = pessoaService.buscarPorId(id);
-        if(pessoaOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        pessoaService.deletar(pessoaOptional.get());
+        pessoaService.deletar(pessoaService.buscarPorId(id));
         return ResponseEntity.ok().build();
     }
 }
