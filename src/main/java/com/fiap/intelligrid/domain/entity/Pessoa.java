@@ -1,7 +1,6 @@
 package com.fiap.intelligrid.domain.entity;
 
 import com.fiap.intelligrid.domain.request.PessoaRequest;
-import com.fiap.intelligrid.domain.response.PessoaAtualizacaoRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

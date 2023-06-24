@@ -1,5 +1,6 @@
-package com.fiap.intelligrid.utils.exceptions;
+package com.fiap.intelligrid.exceptions.handle;
 
+import com.fiap.intelligrid.exceptions.EntidadeNaoEncontradaException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

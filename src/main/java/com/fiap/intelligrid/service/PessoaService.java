@@ -4,7 +4,8 @@ import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.domain.repository.PessoaRepository;
 import com.fiap.intelligrid.domain.response.PessoaAtualizacaoRequest;
 import com.fiap.intelligrid.domain.response.PessoaResponse;
-import com.fiap.intelligrid.utils.exceptions.EntidadeNaoEncontradaException;
+import com.fiap.intelligrid.exceptions.EntidadeNaoEncontradaException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,21 +41,22 @@ public class PessoaService {
         pessoaRepository.delete(pessoa);
     }
 
-    public Pessoa atualizarPessoa(PessoaAtualizacaoRequest pessoaRequest) {
+    @Transactional
+    public Pessoa atualizarPessoa(PessoaAtualizacaoRequest dadosAtualizacao) {
 
-        Optional<Pessoa> pessoa = pessoaRepository.findById(pessoaRequest.id());
+        Optional<Pessoa> verificacaoPessoa = pessoaRepository.findById(dadosAtualizacao.id());
 
-        if (pessoa.isEmpty()) {
+        if (verificacaoPessoa.isEmpty()) {
             throw new EntidadeNaoEncontradaException("Pessoa não encontrada");
         }
-        Pessoa pessoa1 = pessoa.get();
-        if (pessoaRequest.nome() != null) {
-            pessoa1.setNome(pessoaRequest.nome());
+        Pessoa pessoa = verificacaoPessoa.get();
+        if (dadosAtualizacao.nome() != null) {
+            pessoa.setNome(dadosAtualizacao.nome());
         }
-        if (pessoaRequest.email() != null) {
-            pessoa1.setEmail(pessoaRequest.email());
+        if (dadosAtualizacao.email() != null) {
+            pessoa.setEmail(dadosAtualizacao.email());
         }
 
-        return pessoa1;
+        return pessoa;
     }
 }

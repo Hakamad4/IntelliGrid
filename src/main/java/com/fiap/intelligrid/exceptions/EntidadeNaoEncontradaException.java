@@ -1,4 +1,4 @@
-package com.fiap.intelligrid.utils.exceptions;
+package com.fiap.intelligrid.exceptions;
 
 public class EntidadeNaoEncontradaException extends RuntimeException {
 
