@@ -24,6 +24,7 @@ public class PessoaService {
         return pessoaRepository.findAll().stream().map(PessoaResponse::new).toList();
     }
 
+    @Transactional
     public Pessoa salvar(Pessoa pessoa) {
         return pessoaRepository.save(pessoa);
     }
@@ -37,19 +38,15 @@ public class PessoaService {
         return pessoa.get();
     }
 
-    public void deletar(Pessoa pessoa) {
-        pessoaRepository.delete(pessoa);
+    public void deletar(Long id) {
+        pessoaRepository.delete(buscarPorId(id));
     }
 
     @Transactional
     public Pessoa atualizarPessoa(PessoaAtualizacaoRequest dadosAtualizacao) {
 
-        Optional<Pessoa> verificacaoPessoa = pessoaRepository.findById(dadosAtualizacao.id());
+        Pessoa pessoa = buscarPorId(dadosAtualizacao.id());
 
-        if (verificacaoPessoa.isEmpty()) {
-            throw new EntidadeNaoEncontradaException("Pessoa não encontrada");
-        }
-        Pessoa pessoa = verificacaoPessoa.get();
         if (dadosAtualizacao.nome() != null) {
             pessoa.setNome(dadosAtualizacao.nome());
         }
