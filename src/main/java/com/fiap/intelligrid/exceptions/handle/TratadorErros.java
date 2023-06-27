@@ -1,5 +1,9 @@
 package com.fiap.intelligrid.exceptions.handle;
 
+import com.fiap.intelligrid.domain.exception.DefaultException;
+import com.fiap.intelligrid.domain.exception.EnderecoBadRequestException;
+import com.fiap.intelligrid.domain.exception.EnderecoNotFoundException;
+import com.fiap.intelligrid.domain.response.ErrorResponse;
 import com.fiap.intelligrid.exceptions.EntidadeNaoEncontradaException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +33,24 @@ public class TratadorErros {
         return ResponseEntity.badRequest().body(erros.stream().map(DadosErroValidacao::new).toList());
     }
 
+    @ExceptionHandler(EnderecoBadRequestException.class)
+    public ResponseEntity<ErrorResponse> tratarErroEnderecoBadRequest(EnderecoBadRequestException ex) {
+        return ResponseEntity.badRequest().body(ex.getErrorResponse());
+    }
+
+    @ExceptionHandler(EnderecoNotFoundException.class)
+    public ResponseEntity<ErrorResponse> tratarErroEnderecoNotFound(EnderecoNotFoundException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ex.getErrorResponse());
+    }
+
+    @ExceptionHandler(DefaultException.class)
+    public ResponseEntity<ErrorResponse> tratarErroDefaultException(DefaultException ex) {
+        return ResponseEntity
+                .status(ex.getErrorResponse().status())
+                .body(ex.getErrorResponse());
+    }
 
     private record DadosErroValidacao(String campo, String mensagem) {
         public DadosErroValidacao(FieldError erro) {
