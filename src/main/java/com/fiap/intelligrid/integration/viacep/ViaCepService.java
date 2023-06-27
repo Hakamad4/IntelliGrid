@@ -2,16 +2,16 @@ package com.fiap.intelligrid.integration.viacep;
 
 import com.fiap.intelligrid.integration.viacep.domain.exception.ViaCepException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import com.fiap.intelligrid.integration.viacep.domain.response.ViaCepResponse;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 public class ViaCepService {
 
-	private final RestTemplate restTemplate;
+	private final WebClient webClient;
 
-	public ViaCepService(RestTemplate restTemplate) {
-		this.restTemplate = restTemplate;
+	public ViaCepService(WebClient webClient) {
+		this.webClient = webClient;
 	}
 
 	public ViaCepResponse buscaEnderecoPorCep(String cep) throws ViaCepException {
@@ -22,7 +22,11 @@ public class ViaCepService {
 
 		try {
 			String url = "https://viacep.com.br/ws/" + cep + "/json";
-			return this.restTemplate.getForObject(url, ViaCepResponse.class);
+			return webClient.get()
+					.uri(url)
+					.retrieve()
+					.bodyToMono(ViaCepResponse.class)
+					.block();
 		} catch (Exception e) {
 			throw new ViaCepException(e.getMessage());
 		}
