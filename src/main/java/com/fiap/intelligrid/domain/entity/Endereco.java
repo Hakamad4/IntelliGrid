@@ -38,5 +38,8 @@ public class Endereco implements Serializable {
 	@Column(name = "complemento")
 	private String complemento;
 
+	@Column(name = "pessoa_id")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Pessoa pessoa;
 
 }
