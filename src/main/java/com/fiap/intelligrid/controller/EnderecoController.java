@@ -55,6 +55,4 @@ public class EnderecoController {
 		enderecoService.delete(id);
 		return ResponseEntity.ok().build();
 	}
-
 }
-
