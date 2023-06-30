@@ -2,9 +2,10 @@ package com.fiap.intelligrid.service;
 
 import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.domain.repository.PessoaRepository;
+import com.fiap.intelligrid.domain.request.PessoaRequest;
 import com.fiap.intelligrid.domain.response.PessoaAtualizacaoRequest;
 import com.fiap.intelligrid.domain.response.PessoaResponse;
-import com.fiap.intelligrid.exceptions.EntidadeNaoEncontradaException;
+import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -25,27 +26,35 @@ public class PessoaService {
     }
 
     @Transactional
-    public Pessoa salvar(Pessoa pessoa) {
-        return pessoaRepository.save(pessoa);
+    public void salvar(PessoaRequest pessoaRequest) {
+        pessoaRepository.save(new Pessoa(pessoaRequest));
     }
 
-
-    public Pessoa buscarPorId(Long id) throws EntidadeNaoEncontradaException {
+    public Pessoa buscarPorId(Long id) throws PessoaNotFoundException {
         Optional<Pessoa> pessoa = pessoaRepository.findById(id);
         if (pessoa.isEmpty()) {
-            throw new EntidadeNaoEncontradaException("Pessoa não encontrada");
+            throw new PessoaNotFoundException("Pessoa não encontrada");
         }
         return pessoa.get();
     }
 
-    public void deletar(Long id) {
-        pessoaRepository.delete(buscarPorId(id));
+    public PessoaResponse buscarResponsePorId(Long id) throws PessoaNotFoundException {
+        return new PessoaResponse(
+                buscarPorId(id)
+        );
     }
 
     @Transactional
-    public Pessoa atualizarPessoa(PessoaAtualizacaoRequest dadosAtualizacao) {
+    public void deletar(Long id) throws PessoaNotFoundException {
+        long deleted = pessoaRepository.deletePessoaById(id);
+        if (deleted == 0) {
+            throw new PessoaNotFoundException("Pessoa não encontrada");
+        }
+    }
 
-        Pessoa pessoa = buscarPorId(dadosAtualizacao.id());
+    @Transactional
+    public PessoaResponse atualizarPessoa(Long id, PessoaAtualizacaoRequest dadosAtualizacao) throws PessoaNotFoundException {
+        Pessoa pessoa = buscarPorId(id);
 
         if (dadosAtualizacao.nome() != null) {
             pessoa.setNome(dadosAtualizacao.nome());
@@ -54,6 +63,6 @@ public class PessoaService {
             pessoa.setEmail(dadosAtualizacao.email());
         }
 
-        return pessoa;
+        return new PessoaResponse(pessoa);
     }
 }

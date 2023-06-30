@@ -1,17 +1,22 @@
 package com.fiap.intelligrid.domain.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fiap.intelligrid.domain.entity.Endereco;
 
-public record EnderecoResponse(String cep,
-							   String logradouro,
-							   String numero,
-							   String bairro,
-							   String cidade,
-							   String estado,
-							   String complemento) {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public record EnderecoResponse(
+		Long id,
+		String cep,
+		String logradouro,
+		String numero,
+		String bairro,
+		String cidade,
+		String estado,
+		String complemento) {
 
 	public EnderecoResponse(Endereco endereco) {
-		this(endereco.getCep(),
+		this(endereco.getId(),
+				endereco.getCep(),
 				endereco.getLogradouro(),
 				endereco.getNumero(),
 				endereco.getBairro(),

@@ -1,5 +1,6 @@
 package com.fiap.intelligrid.domain.entity;
 
+import com.fiap.intelligrid.domain.response.EnderecoResponse;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -38,7 +39,7 @@ public class Endereco implements Serializable {
 	@Column(name = "complemento")
 	private String complemento;
 
-	@Column(name = "pessoa_id")
+	@JoinColumn(name = "pessoa_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Pessoa pessoa;
 

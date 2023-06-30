@@ -1,4 +1,4 @@
-package com.fiap.intelligrid.domain.exception;
+package com.fiap.intelligrid.exceptions;
 
 import com.fiap.intelligrid.domain.response.ErrorResponse;
 
@@ -7,7 +7,7 @@ public class DefaultException extends Exception {
 	private ErrorResponse errorResponse;
 
 	public DefaultException(ErrorResponse errorResponse) {
-		super(errorResponse.message());
+		super(errorResponse.getMensagem());
 		this.errorResponse = errorResponse;
 	}
 

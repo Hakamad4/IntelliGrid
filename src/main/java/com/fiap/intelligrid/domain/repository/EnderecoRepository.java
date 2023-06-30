@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 
+	long deleteEnderecoById(Long id);
+
 }

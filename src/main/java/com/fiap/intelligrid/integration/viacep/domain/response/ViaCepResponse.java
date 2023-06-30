@@ -33,6 +33,7 @@ public class ViaCepResponse {
 
 	public EnderecoResponse toEnderecoResponse() {
 		return new EnderecoResponse(
+				null,
 				cep,
 				logradouro,
 				complemento,

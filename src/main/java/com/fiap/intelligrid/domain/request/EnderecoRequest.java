@@ -1,16 +1,22 @@
 package com.fiap.intelligrid.domain.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fiap.intelligrid.config.validator.ValidCep;
 import com.fiap.intelligrid.domain.entity.Endereco;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+
 
 public record EnderecoRequest(
-		@JsonProperty(required = true) String cep,
+		@ValidCep
+		String cep,
+		@NotBlank
 		String logradouro,
+		@NotBlank
 		String numero,
+		@NotBlank
 		String bairro,
+		@NotBlank
 		String cidade,
+		@NotBlank
 		String estado,
 		String complemento
 ) {
@@ -24,7 +30,8 @@ public record EnderecoRequest(
 				bairro,
 				cidade,
 				estado,
-				complemento
+				complemento,
+				null
 		);
 	}
 }

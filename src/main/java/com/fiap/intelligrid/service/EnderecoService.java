@@ -1,11 +1,13 @@
 package com.fiap.intelligrid.service;
 
+import com.fiap.intelligrid.domain.entity.Endereco;
 import com.fiap.intelligrid.domain.entity.Pessoa;
-import com.fiap.intelligrid.domain.exception.EnderecoBadRequestException;
-import com.fiap.intelligrid.domain.exception.EnderecoNotFoundException;
 import com.fiap.intelligrid.domain.repository.EnderecoRepository;
 import com.fiap.intelligrid.domain.request.EnderecoRequest;
 import com.fiap.intelligrid.domain.response.EnderecoResponse;
+import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
+import com.fiap.intelligrid.exceptions.EnderecoBadRequestException;
+import com.fiap.intelligrid.exceptions.EnderecoNotFoundException;
 import com.fiap.intelligrid.integration.viacep.ViaCepService;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +38,7 @@ public class EnderecoService {
 		}
 	}
 
-	public List<EnderecoResponse> buscarPorPessoa(Long pessoaId) {
+	public List<EnderecoResponse> buscarPorPessoa(Long pessoaId) throws PessoaNotFoundException {
 		final Pessoa pessoa = pessoaService.buscarPorId(pessoaId);
 		return pessoa.getEnderecos().stream().map(EnderecoResponse::new).toList();
 	}
@@ -49,20 +51,27 @@ public class EnderecoService {
 		}
 	}
 
-	public void update(EnderecoRequest enderecoRequest) throws EnderecoBadRequestException {
-		try {
-			enderecoRepository.save(enderecoRequest.toEntity());
-		} catch (Exception e) {
-			throw new EnderecoBadRequestException(e.getMessage());
-		}
+	//busca endereco por id
+	public EnderecoResponse buscarPorId(Long id) throws EnderecoNotFoundException {
+		return enderecoRepository.findById(id)
+				.map(EnderecoResponse::new)
+				.orElseThrow(EnderecoNotFoundException::new);
 	}
 
-	public void delete(Long id) throws EnderecoBadRequestException {
-		try {
-			enderecoRepository.deleteById(id);
-		} catch (Exception e) {
+	public void update(Long id, EnderecoRequest enderecoRequest) throws EnderecoNotFoundException {
+		if (!enderecoRepository.existsById(id)) {
+			throw new EnderecoNotFoundException("Endereço não encontrado");
+		}
 
-			throw new EnderecoBadRequestException(e.getMessage());
+		final Endereco endereco = enderecoRequest.toEntity();
+		endereco.setId(id);
+		enderecoRepository.save(endereco);
+	}
+
+	public void delete(Long id) throws EnderecoNotFoundException {
+		final long deleted = enderecoRepository.deleteEnderecoById(id);
+		if (deleted == 0) {
+			throw new EnderecoNotFoundException("Endereço não encontrado");
 		}
 	}
 }
