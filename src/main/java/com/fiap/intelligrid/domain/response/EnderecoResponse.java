@@ -1,24 +1,28 @@
 package com.fiap.intelligrid.domain.response;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fiap.intelligrid.domain.entity.Endereco;
 
-@Setter
-@Getter
-public class EnderecoResponse {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public record EnderecoResponse(
+		Long id,
+		String cep,
+		String logradouro,
+		String numero,
+		String bairro,
+		String cidade,
+		String estado,
+		String complemento) {
 
-	private String cep;
-
-	private String logradouro;
-
-	private String numero;
-
-	private String bairro;
-
-	private String cidade;
-
-	private String estado;
-
-	private String complemento;
-
+	public EnderecoResponse(Endereco endereco) {
+		this(endereco.getId(),
+				endereco.getCep(),
+				endereco.getLogradouro(),
+				endereco.getNumero(),
+				endereco.getBairro(),
+				endereco.getCidade(),
+				endereco.getEstado(),
+				endereco.getComplemento()
+		);
+	}
 }

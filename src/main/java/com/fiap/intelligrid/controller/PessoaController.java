@@ -4,6 +4,7 @@ import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.domain.request.PessoaRequest;
 import com.fiap.intelligrid.domain.response.PessoaAtualizacaoRequest;
 import com.fiap.intelligrid.domain.response.PessoaResponse;
+import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
 import com.fiap.intelligrid.service.PessoaService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pessoas")
+@RequestMapping("/pessoa")
 public class PessoaController {
 
     private final PessoaService pessoaService;
@@ -28,23 +29,24 @@ public class PessoaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PessoaResponse> buscarPessoaPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(new PessoaResponse(pessoaService.buscarPorId(id)));
+    public ResponseEntity<PessoaResponse> buscarPessoaPorId(@PathVariable Long id) throws PessoaNotFoundException {
+        return ResponseEntity.ok(pessoaService.buscarResponsePorId(id));
     }
 
     @PostMapping
-    public ResponseEntity<Pessoa> cadastrarPessoa(@RequestBody @Valid PessoaRequest pessoaRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.salvar(new Pessoa(pessoaRequest)));
+    public ResponseEntity<Void> cadastrarPessoa(@RequestBody @Valid PessoaRequest pessoaRequest) {
+        pessoaService.salvar(pessoaRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping
-    public ResponseEntity<PessoaResponse> atualizarPessoa(@RequestBody @Valid PessoaAtualizacaoRequest pessoaRequest) {
-        Pessoa pessoa = pessoaService.atualizarPessoa(pessoaRequest);
-        return ResponseEntity.ok(new PessoaResponse(pessoa));
+    @PutMapping("/{id}")
+    public ResponseEntity<PessoaResponse> atualizarPessoa(@PathVariable Long id, @RequestBody @Valid PessoaAtualizacaoRequest pessoaRequest)
+            throws PessoaNotFoundException {
+        return ResponseEntity.ok(pessoaService.atualizarPessoa(id, pessoaRequest));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Pessoa> excluirPessoa(@PathVariable Long id) {
+    public ResponseEntity<Pessoa> excluirPessoa(@PathVariable Long id) throws PessoaNotFoundException {
         pessoaService.deletar(id);
         return ResponseEntity.ok().build();
     }

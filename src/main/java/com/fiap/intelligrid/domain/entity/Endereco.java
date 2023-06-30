@@ -1,9 +1,8 @@
 package com.fiap.intelligrid.domain.entity;
 
+import com.fiap.intelligrid.domain.response.EnderecoResponse;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -12,6 +11,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode
+@AllArgsConstructor @NoArgsConstructor
 public class Endereco implements Serializable {
 
 	@Id
@@ -39,5 +39,8 @@ public class Endereco implements Serializable {
 	@Column(name = "complemento")
 	private String complemento;
 
+	@JoinColumn(name = "pessoa_id")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Pessoa pessoa;
 
 }
