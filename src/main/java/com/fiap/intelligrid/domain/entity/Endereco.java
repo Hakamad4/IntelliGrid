@@ -1,6 +1,6 @@
 package com.fiap.intelligrid.domain.entity;
 
-import com.fiap.intelligrid.domain.response.EnderecoResponse;
+
 import jakarta.persistence.*;
 import lombok.*;
 
