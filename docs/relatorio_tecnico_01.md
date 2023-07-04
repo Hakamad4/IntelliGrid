@@ -26,6 +26,11 @@ Por fim, para gerenciar nossa biblioteca de requisições, realização de teste
 
 ### Arquitetura
 
+Para nossa arquitetura, optamos por seguir os padrões de *Domain Driven Design* (DDD) e *Representational State Transfer* (REST). 
+Dessa forma, a camada de domínio é responsável por gerenciar as entidades das regras de negócio, 
+e o serviço é responsável por implementar as regras de negócio, 
+enquanto a camada de controladora é responsável por receber as requisições 
+e retornar as respostas para o cliente.
 padrões DDD (diretrizes) e REST (controller)
 
 Responsabilidades: controller mais limpo, service com as regras de negócio
