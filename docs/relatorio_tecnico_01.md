@@ -85,15 +85,11 @@ O uso dessa estratégia também propicia as seguintes vantagens:
 
 ### Validações de dados
 
-A primeira validação dos dados ocorre na tentativa de conversão dos dados provenientes das requests para os Objetos Java, como por exemplo para um `Double` ou `Local`
+A primeira validação dos dados ocorre na tentativa de conversão dos dados provenientes das requests para os Objetos Java, como por exemplo para um `Double` ou `LocalDate`. No caso da impossibilidade de conversão, uma exceção é lançada.
 
-Com relação à validação dos dados de entrada provenientes das chamadas à nossa API, utilizamos as anotações de validação do *framework Jakarta*.
+Adicionalmente, também utilizamos as anotações de validação do *framework Jakarta* nas variáveis dos DTOs. Dessa forma, conseguimos especificar se uma variável deve ou não ser nula, estar em branco ou no caso de datas se devem ser passadas ou futuras. No caso de um dado não passar na validação, também ocorre o lançamento de uma exceção.
 
-Nesta estratégia, a primeira validação ocorre na tentativa de conversão dos dados da requisição para os tipos de dados presentes no DTO, no caso de falha são lançadas exceções. 
-
-Assim, nas classes responsáveis por abstrair os dados do corpo da requisição em objetos de DTO, foram incorporadas anotações quando necessário para evitar que objetos fossem nulos ou brancos, validações de datas como ou passadas e formato
-
-Nessa estratégia, a primeira 
+Além de deixar o código mais "limpo", também foi possível customizar e criar anotações para atender nossas necessidades. Adaptamos a anotação `@Email` para que validasse as informações contra um *regex* que fornecemos, ao invés do comportamento padrão para que o formato do endereço de e-mail aceito fosse mais robusto. Além disso, criamos a anotação `@CEP` para validar a recepção desse dado na estrutura `00000-000`, onde os dígitos `0` representam caracteres numéricos.
 
 ### Tratamento de Exceções
 Para o tratamento de exceções, optamos por utilizar um *Handler* para capturar as exceções lançadas e retornar uma resposta padronizada para o cliente. Dessa forma, não é necessário tratar as exceções em cada método da controladora, o que torna o código mais limpo e legível.
