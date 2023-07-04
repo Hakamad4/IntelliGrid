@@ -1,10 +1,6 @@
 package com.fiap.intelligrid.domain.entity;
 
-
-
-
 import com.fiap.intelligrid.domain.request.EletrodomesticoRequest;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,12 +25,11 @@ public class Eletrodomestico {
 	private String potencia;
 	
 	 public Eletrodomestico(EletrodomesticoRequest eletroeletronicoRequest) {
-		  
-	        this.nome = eletroeletronicoRequest.nome();
+		 
+		    this.nome = eletroeletronicoRequest.nome();
 	        this.modelo = eletroeletronicoRequest.modelo();
 	        this.potencia = eletroeletronicoRequest.potencia();
-	       
-	    }
+	 }
 	
 	
 }

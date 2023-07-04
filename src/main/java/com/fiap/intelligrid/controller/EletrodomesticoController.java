@@ -25,9 +25,9 @@ public class EletrodomesticoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<EletrodomesticoRequest> cadastrarEletrodomestico(@RequestBody @Valid EletrodomesticoRequest eletrodomesticoRequest) throws EnderecoBadRequestException {
+	public ResponseEntity<EletrodomesticoRequest> cadastrarEletrodomestico(@RequestBody @Valid EletrodomesticoRequest eletrodomesticoRequest) throws EletrodomesticoNotFoundException {
 		eletrodomesticoservice.salvar(eletrodomesticoRequest);
-		return ResponseEntity.status(HttpStatus.CREATED).body(eletrodomesticoRequest);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 	
 	@GetMapping("/{id}")

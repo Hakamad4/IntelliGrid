@@ -2,6 +2,7 @@ package com.fiap.intelligrid.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.stereotype.Service;
 import com.fiap.intelligrid.domain.entity.Eletrodomestico;
@@ -10,8 +11,6 @@ import com.fiap.intelligrid.domain.request.EletrodomesticoRequest;
 import com.fiap.intelligrid.domain.response.EletrodomesticoAtualizacaoRequest;
 import com.fiap.intelligrid.domain.response.EletrodomesticoResponse;
 import com.fiap.intelligrid.exceptions.EletrodomesticoNotFoundException;
-import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
-
 import jakarta.transaction.Transactional;
 
 @Service
@@ -26,7 +25,7 @@ public class EletrodomesticoService {
 	
 	@Transactional
 	public void salvar(EletrodomesticoRequest eletrodomesticoRequest) {
-			eletrodomesticoRepository.save(new Eletrodomestico(eletrodomesticoRequest));
+			eletrodomesticoRepository.save(eletrodomesticoRequest.toEntity());
 	}
 	
 	public Eletrodomestico buscarPorId(Long id) throws EletrodomesticoNotFoundException {
