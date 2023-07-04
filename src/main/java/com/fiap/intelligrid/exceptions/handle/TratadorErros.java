@@ -38,7 +38,7 @@ public class TratadorErros {
 
 		return ResponseEntity
 				.badRequest()
-				.body(new ErrorResponse(
+				.body   (new ErrorResponse(
 						"Erro de validação",
 						HttpStatus.BAD_REQUEST,
 						erros.stream().map(CamposErroResponse::new).toList())

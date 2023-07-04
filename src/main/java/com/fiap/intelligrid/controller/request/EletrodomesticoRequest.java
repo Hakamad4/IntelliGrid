@@ -1,5 +1,7 @@
 package com.fiap.intelligrid.controller.request;
 
+import com.fiap.intelligrid.domain.entity.Eletrodomestico;
+
 import jakarta.validation.constraints.NotBlank;
 
 //to json
@@ -13,13 +15,15 @@ public record EletrodomesticoRequest(
 			@NotBlank
 			String potencia) {
 
-		public EletrodomesticoRequest toEntity() {
-			return new EletrodomesticoRequest(
-					id,
+		public Eletrodomestico toEntity() {
+			return new Eletrodomestico(
+					null,
 					nome,
 					modelo,
 					potencia
 					
 			);
 		}
+		
+		
 }
