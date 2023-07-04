@@ -85,11 +85,15 @@ O uso dessa estratégia também propicia as seguintes vantagens:
 
 ### Validações de dados
 
-Com relação à validação dos dados de entrada provenientes das chamadas à nossa API, utilizamos as anotações de validação do *framework Jakarta*. Assim, nas classes responsáveis por abstrair os dados do corpo da requisição em objetos de DTO, foram incorporadas anotações quando necessário para evitar que objetos fossem nulos ou brancos, validações de datas como ou passadas e formato
+A primeira validação dos dados ocorre na tentativa de conversão dos dados provenientes das requests para os Objetos Java, como por exemplo para um `Double` ou `Local`
+
+Com relação à validação dos dados de entrada provenientes das chamadas à nossa API, utilizamos as anotações de validação do *framework Jakarta*.
+
+Nesta estratégia, a primeira validação ocorre na tentativa de conversão dos dados da requisição para os tipos de dados presentes no DTO, no caso de falha são lançadas exceções. 
+
+Assim, nas classes responsáveis por abstrair os dados do corpo da requisição em objetos de DTO, foram incorporadas anotações quando necessário para evitar que objetos fossem nulos ou brancos, validações de datas como ou passadas e formato
 
 Nessa estratégia, a primeira 
-
-### Exclusão e informações
 
 ### Tratamento de Exceções
 
