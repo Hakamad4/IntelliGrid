@@ -1,9 +1,9 @@
 package com.fiap.intelligrid.controller;
 
 import com.fiap.intelligrid.domain.entity.Pessoa;
-import com.fiap.intelligrid.domain.request.PessoaRequest;
-import com.fiap.intelligrid.domain.response.PessoaAtualizacaoRequest;
-import com.fiap.intelligrid.domain.response.PessoaResponse;
+import com.fiap.intelligrid.controller.request.PessoaRequest;
+import com.fiap.intelligrid.controller.request.PessoaAtualizacaoRequest;
+import com.fiap.intelligrid.controller.response.PessoaResponse;
 import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
 import com.fiap.intelligrid.service.PessoaService;
 import jakarta.validation.Valid;

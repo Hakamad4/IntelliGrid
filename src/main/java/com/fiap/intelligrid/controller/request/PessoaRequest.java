@@ -1,4 +1,4 @@
-package com.fiap.intelligrid.domain.request;
+package com.fiap.intelligrid.controller.request;
 
 import com.fiap.intelligrid.domain.entity.Genero;
 import com.fiap.intelligrid.domain.entity.Pessoa;

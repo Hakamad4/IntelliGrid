@@ -1,4 +1,4 @@
-package com.fiap.intelligrid.domain.response;
+package com.fiap.intelligrid.controller.response;
 
 import com.fiap.intelligrid.domain.entity.Eletrodomestico;
 

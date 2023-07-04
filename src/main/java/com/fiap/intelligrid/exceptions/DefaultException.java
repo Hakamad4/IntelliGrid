@@ -1,6 +1,6 @@
 package com.fiap.intelligrid.exceptions;
 
-import com.fiap.intelligrid.domain.response.ErrorResponse;
+import com.fiap.intelligrid.controller.response.ErrorResponse;
 
 public class DefaultException extends Exception {
 

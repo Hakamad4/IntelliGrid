@@ -1,6 +1,6 @@
 package com.fiap.intelligrid.exceptions;
 
-import com.fiap.intelligrid.domain.response.ErrorResponse;
+import com.fiap.intelligrid.controller.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 
 public class EnderecoNotFoundException extends DefaultException {

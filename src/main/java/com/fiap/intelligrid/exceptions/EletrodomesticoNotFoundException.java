@@ -2,7 +2,7 @@ package com.fiap.intelligrid.exceptions;
 
 import org.springframework.http.HttpStatus;
 
-import com.fiap.intelligrid.domain.response.ErrorResponse;
+import com.fiap.intelligrid.controller.response.ErrorResponse;
 
 public class EletrodomesticoNotFoundException extends DefaultException{
 

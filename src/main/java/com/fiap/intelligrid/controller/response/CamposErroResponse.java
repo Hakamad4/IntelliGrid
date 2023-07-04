@@ -1,4 +1,4 @@
-package com.fiap.intelligrid.domain.response;
+package com.fiap.intelligrid.controller.response;
 
 import org.springframework.validation.FieldError;
 

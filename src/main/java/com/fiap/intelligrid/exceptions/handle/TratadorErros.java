@@ -1,7 +1,7 @@
 package com.fiap.intelligrid.exceptions.handle;
 
-import com.fiap.intelligrid.domain.response.CamposErroResponse;
-import com.fiap.intelligrid.domain.response.ErrorResponse;
+import com.fiap.intelligrid.controller.response.CamposErroResponse;
+import com.fiap.intelligrid.controller.response.ErrorResponse;
 import com.fiap.intelligrid.exceptions.DefaultException;
 import com.fiap.intelligrid.exceptions.EnderecoBadRequestException;
 import com.fiap.intelligrid.exceptions.EnderecoNotFoundException;

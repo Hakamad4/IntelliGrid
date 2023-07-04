@@ -2,9 +2,9 @@ package com.fiap.intelligrid.service;
 
 import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.domain.repository.PessoaRepository;
-import com.fiap.intelligrid.domain.request.PessoaRequest;
-import com.fiap.intelligrid.domain.response.PessoaAtualizacaoRequest;
-import com.fiap.intelligrid.domain.response.PessoaResponse;
+import com.fiap.intelligrid.controller.request.PessoaRequest;
+import com.fiap.intelligrid.controller.request.PessoaAtualizacaoRequest;
+import com.fiap.intelligrid.controller.response.PessoaResponse;
 import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

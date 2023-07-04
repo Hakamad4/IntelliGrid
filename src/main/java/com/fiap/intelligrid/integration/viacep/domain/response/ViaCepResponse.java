@@ -1,7 +1,7 @@
 package com.fiap.intelligrid.integration.viacep.domain.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fiap.intelligrid.domain.response.EnderecoResponse;
+import com.fiap.intelligrid.controller.response.EnderecoResponse;
 import lombok.Getter;
 import lombok.Setter;
 

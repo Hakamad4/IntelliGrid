@@ -1,4 +1,4 @@
-package com.fiap.intelligrid.domain.request;
+package com.fiap.intelligrid.controller.request;
 
 import com.fiap.intelligrid.config.validator.ValidCep;
 import com.fiap.intelligrid.domain.entity.Endereco;

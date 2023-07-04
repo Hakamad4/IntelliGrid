@@ -1,4 +1,4 @@
-package com.fiap.intelligrid.domain.response;
+package com.fiap.intelligrid.controller.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fiap.intelligrid.domain.entity.Endereco;
