@@ -51,9 +51,11 @@ As seguintes entidades do subdomínio de suporte foram criadas:
 
 ### Camadas de Controladora e Serviço
 
-DTOs request e response
+Seguindo os recomendações de separação de funcionalidade, a camada de controladora possui os métodos da API responsáveis pela interface com o mundo externo, enquanto da camada de serviço implementa as regras de negócio. Nesta fase do projeto, ambas as camadas foram responsáveis pela implementação do CRUD das entidades.
 
-organizado como REST e CRUD, não persiste estado
+Em nossa implementação a camada da controladora ficou responsável pela especificação dos endpoints e implantação do CRUD seguindo os preceitos do REST, como utilização dos verbos do protocolo HTML e a não persistência de estado entre as requisições.
+
+Por questões de organização os DTOs foram organizados entre request e response dentro da camada da controladora.
 
 Neste momento, todos os métodos de exclusão implementados efetivamente deletam os registros da base de dados, não foi implementada no presente momento nenhuma forma de *soft delete*.
 
@@ -98,8 +100,6 @@ E para padronizarmos o retorno dos erros na API criamos um DTO responsavel por e
 ### Consumo de API externa
 Para o consumo da API externa, utilizamos a interface *WebClient* disponível no *Spring*. Essa interface nos permite realizar requisições HTTP de forma assíncrona, o que é interessante para evitar que a aplicação fique bloqueada enquanto aguarda a resposta da requisição. Além disso, o *WebClient* também nos permite realizar o mapeamento dos dados recebidos para objetos Java, o que facilita o uso dos dados recebidos.
 Estamos utlizando como API externa o [Via Cep](https://viacep.com.br/), que nos permite obter dados de endereços brasileiros a partir de um CEP.
-
-
 
 ## Considerações Finais
 Então podemos afirmar que a primeira fase do projeto foi concluída com sucesso. 
