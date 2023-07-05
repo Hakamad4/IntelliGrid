@@ -63,11 +63,11 @@ As seguintes entidades do subdomínio de suporte foram criadas:
 
 Nesta fase do projeto, ambas as camadas foram responsáveis pela implementação do CRUD das entidades.
 
-Em nossa implementação a camada da controladora ficou responsável pela especificação dos endpoints e implantação do CRUD seguindo os preceitos do REST, como utilização dos verbos do protocolo HTML e a não persistência de estado entre as requisições.
+Em nossa implementação a camada da controladora ficou responsável pela especificação dos endpoints e implantação do CRUD seguindo os preceitos do REST, como utilização dos verbos do protocolo HTML e a não persistência de estado entre as requisições. Enquanto o service, cuidou das funcionalidades do CRUD.
 
-Por questões de organização os DTOs foram organizados entre request e response dentro da camada da controladora.
+Por questões de organização os DTOs foram divididos entre request e response dentro da camada da controladora.
 
-Neste momento, todos os métodos de exclusão implementados efetivamente deletam os registros da base de dados, não foi implementada no presente momento nenhuma forma de *soft delete*.
+Neste momento, todos os métodos de exclusão efetivamente deletam os registros da base de dados e ainda não foi implementado nenhuma forma de *soft delete*.
 
 ## Discussões
 
