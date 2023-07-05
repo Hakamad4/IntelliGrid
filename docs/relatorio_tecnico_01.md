@@ -18,7 +18,7 @@ Como objetivos específicos:
 
 Configuramos um projeto utilizando a *stack* Java 17, *Spring Boot* 3 e a interface JPA (*Java Persistence API*) combinada com um banco de dados em memória H2 para persistência. Adicionamos também a dependência *Lombok*, para facilitar a criação de *Getters*, *Setters* e construtores.
 
-Para versionamento estamos utilizando Git em combinação com a plataforma Github para orquestrar a colaboração dos esforços do time e para gerenciamento de dependências do projeto utilizamos o Maven. Os membros do grupo estão trabalhando com suas IDEs preferência, seja IntelliJ, Eclipse ou VS Code. Dessa forma, foi implementado o arquivo `.gitignore` para não permitir o compartilhamento de configurações desses editores ao repositório do projeto.
+Para versionamento estamos utilizando Git em combinação com a plataforma Github para orquestrar a colaboração dos esforços do time e para gerenciamento de dependências do projeto utilizamos o Maven. Os membros do grupo estão trabalhando com suas IDEs preferência, seja IntelliJ, Eclipse ou VS Code. Também, abordamos boas práticas , como alguns dos princípios do SOLID, como o Single Reposability Principle, no qual, tivemos o cuidado de atribuir cada classe uma única responsabilidade.Dessa forma, foi implementado o arquivo `.gitignore` para não permitir o compartilhamento de configurações desses editores ao repositório do projeto.
 
 Também consumimos uma API externa, a Viacep, para auxiliar na obtenção de dados de endereço no território brasileiro. Para realizar e processar a requisição utilizamos a interface *WebClient*, disponível no *Spring*.
 
