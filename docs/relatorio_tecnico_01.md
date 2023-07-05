@@ -16,7 +16,7 @@ Como objetivos específicos:
 
 ### Tecnologias e Ferramentas
 
-Configuramos um projeto utilizando a *stack* Java 17, *Spring Boot* 3 e a interface JPA (*Java Persistence API*)combinada com um banco de dados em memória H2 para persistência. Adicionamos também a dependência *Lombok*, para facilitar a criação de *Getters*, *Setters* e construtores.
+Configuramos um projeto utilizando a *stack* Java 17, *Spring Boot* 3 e a interface JPA (*Java Persistence API*) combinada com um banco de dados em memória H2 para persistência. Adicionamos também a dependência *Lombok*, para facilitar a criação de *Getters*, *Setters* e construtores.
 
 Para versionamento estamos utilizando Git em combinação com a plataforma Github para orquestrar a colaboração dos esforços do time. Os membros do grupo estão trabalhando com suas IDEs preferência, seja IntelliJ, Eclipse ou VS Code. Dessa forma, foi implementado o arquivo `.gitignore` para não permitir a subida de configurações desses editores ao repositório do projeto.
 
@@ -26,13 +26,19 @@ Por fim, para gerenciar nossa biblioteca de requisições, realização de teste
 
 ### Arquitetura
 
-Em nossa arquitetura, adotamos os padrões de Domain Driven Design (DDD) e Representational State Transfer (REST), promovendo uma estrutura eficiente e clara. No DDD, a camada de domínio assume a administração das entidades inerentes às regras de negócio.
+Em nossa arquitetura, adotamos os padrões de Domain Driven Design (DDD) e 
+Representational State Transfer (REST), promovendo uma estrutura eficiente e clara. 
+No DDD, a camada de domínio assume a administração das entidades inerentes às regras de negócio.
 
-Em paralelo, a camada de serviço é encarregada de implantar essas regras de negócio, deixando a complexidade concentrada neste ponto, o que contribui para a robustez do nosso sistema.
+Em paralelo, a camada de serviço é encarregada de implantar essas regras de negócio, 
+deixando a complexidade concentrada neste ponto, o que contribui para a robustez do nosso sistema.
 
-Já a camada controladora tem a função de lidar com as requisições recebidas, bem como retornar as respostas adequadas para o cliente. Dessa maneira, conseguimos manter a responsabilidade da camada controladora mais enxuta e com foco estrito em sua função.
+Já a camada controladora tem a função de lidar com as requisições recebidas, 
+bem como retornar as respostas adequadas para o cliente. Dessa maneira, 
+conseguimos manter a responsabilidade da camada controladora mais enxuta e com foco estrito em sua função.
 
-Essa distribuição de responsabilidades assegura a manutenção de um código mais limpo e organizado, além de possibilitar um gerenciamento mais eficaz da complexidade na camada de serviço.
+Essa distribuição de responsabilidades assegura a manutenção de um código mais limpo e organizado, 
+além de possibilitar um gerenciamento mais eficaz da complexidade na camada de serviço.
 
 ### Camada de Domínio
 
