@@ -61,7 +61,7 @@ As seguintes entidades do subdomínio de suporte foram criadas:
 
 ### Camadas de Controladora e Serviço
 
-Seguindo os recomendações de separação de funcionalidade, a camada de controladora possui os métodos da API responsáveis pela interface, enquanto da camada de serviço implementa as regras de negócio. Nesta fase do projeto, ambas as camadas foram responsáveis pela implementação do CRUD das entidades.
+Nesta fase do projeto, ambas as camadas foram responsáveis pela implementação do CRUD das entidades.
 
 Em nossa implementação a camada da controladora ficou responsável pela especificação dos endpoints e implantação do CRUD seguindo os preceitos do REST, como utilização dos verbos do protocolo HTML e a não persistência de estado entre as requisições.
 
