@@ -50,7 +50,7 @@ public class EletrodomesticoService {
     public void deletar(Long id) throws EletrodomesticoNotFoundException {
         long deleted = eletrodomesticoRepository.deleteEletrodomesticoById(id);
         if (deleted == 0) {
-            throw new EletrodomesticoNotFoundException("Eletrodomestico não encontrada");
+            throw new EletrodomesticoNotFoundException("Eletrodomestico não encontrado.");
         }
     }
 

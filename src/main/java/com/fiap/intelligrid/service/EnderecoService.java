@@ -9,6 +9,7 @@ import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
 import com.fiap.intelligrid.exceptions.EnderecoBadRequestException;
 import com.fiap.intelligrid.exceptions.EnderecoNotFoundException;
 import com.fiap.intelligrid.integration.viacep.ViaCepService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,6 +44,7 @@ public class EnderecoService {
 		return pessoa.getEnderecos().stream().map(EnderecoResponse::new).toList();
 	}
 
+	@Transactional
 	public void create(EnderecoRequest enderecoRequest) throws EnderecoBadRequestException {
 		try {
 			enderecoRepository.save(enderecoRequest.toEntity());
@@ -51,13 +53,13 @@ public class EnderecoService {
 		}
 	}
 
-	//busca endereco por id
 	public EnderecoResponse buscarPorId(Long id) throws EnderecoNotFoundException {
 		return enderecoRepository.findById(id)
 				.map(EnderecoResponse::new)
 				.orElseThrow(EnderecoNotFoundException::new);
 	}
 
+	@Transactional
 	public void update(Long id, EnderecoRequest enderecoRequest) throws EnderecoNotFoundException {
 		if (!enderecoRepository.existsById(id)) {
 			throw new EnderecoNotFoundException("Endereço não encontrado");
@@ -68,6 +70,7 @@ public class EnderecoService {
 		enderecoRepository.save(endereco);
 	}
 
+	@Transactional
 	public void delete(Long id) throws EnderecoNotFoundException {
 		final long deleted = enderecoRepository.deleteEnderecoById(id);
 		if (deleted == 0) {
