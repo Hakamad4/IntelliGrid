@@ -1,23 +1,34 @@
 # IntelliGrid
 
 ### Sumário:
-<!-- TOC -->
 * [IntelliGrid](#intelligrid)
     * [Sumário:](#sumário)
     * [Sobre](#sobre)
+    * [API](#api)
+    * [Relatórios Técnicos](#relatórios-técnicos)
     * [📋 Pré-requisitos](#-pré-requisitos)
     * [🔧 Instalação e execução](#-instalação-e-execução)
       * [Instalação do Java 17](#instalação-do-java-17)
       * [Instalação do Maven](#instalação-do-maven)
-  * [API](#api)
-  * [Relatórios Técnicos](#relatórios-técnicos)
-<!-- TOC -->
+
 
 
 ### Sobre
 Intelligrid é um sistema para monitoramento de consumo de energia de seus equipamentos.
 
 Em desenvolvimento como trabalho de curso da pós-graduação em Arquitetura e Desenvolvimento Java na FIAP.
+
+## API
+Nossa [documentação](https://documenter.getpostman.com/view/16901424/2s93zCaMVR) da API foi feita e disponibilizada no Postman.
+Nela está o detalhamento das nossas rotas de API, com exemplos de requisições e respostas.
+
+## Relatórios Técnicos
+
+Abaixo estão os links para os relatórios técnicos de cada fase do projeto.
+
+[Fase 01](https://github.com/Hakamad4/IntelliGrid/blob/main/docs/relatorio_tecnico_01.md)
+
+
 
 ### 📋 Pré-requisitos
 
@@ -47,12 +58,3 @@ Para executar basta utlilizar a classe `IntelliGridApplication.java`.
 7. Execute o comando mvn `--version` para verificar se a instalação foi concluída com sucesso.
 
 
-## API
-Nossa [documentação](https://documenter.getpostman.com/view/16901424/2s93zCaMVR) da API foi feita e disponibilizada no Postman. 
-Nela está o detalhamento das nossas rotas de API, com exemplos de requisições e respostas.
-
-## Relatórios Técnicos
-
-Abaixo estão os links para os relatórios técnicos de cada fase do projeto.
-
-[Fase 01](https://github.com/Hakamad4/IntelliGrid/blob/main/docs/relatorio_tecnico_01.md)
