@@ -26,8 +26,9 @@ Por fim, para gerenciar nossa biblioteca de requisições, realização de teste
 
 ### Arquitetura
 
-Adotamos a arquitetura em camadas, nas quais, dividimos o projeto em pacotes a saber, controladora, serviço e domínio. Estão presentes também, os padrões de Domain Driven Design (DDD) e Representational State Transfer (REST), promovendo uma estrutura eficiente e clara. 
-No DDD, a camada de domínio assume a administração das entidades inerentes às regras de negócio.
+Adotamos a arquitetura em camadas, nas quais, dividimos o projeto em pacotes a saber, controladora, serviço e domínio. Estão presentes também, os padrões de Domain Driven Design (DDD) e Representational State Transfer (REST), promovendo uma estrutura eficiente e clara.
+
+A camada de domínio assume a administração das entidades inerentes às regras de negócio.
 
 Em paralelo, a camada de serviço é encarregada de implantar essas regras de negócio, 
 concentrando a complexidade neste ponto, o que contribui para a robustez do nosso sistema.
