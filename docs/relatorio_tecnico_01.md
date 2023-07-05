@@ -16,9 +16,9 @@ Como objetivos específicos:
 
 ### Tecnologias e Ferramentas
 
-Configuramos um projeto utilizando a *stack* Java 17, *Spring Boot* 3 e a interface JPA (*Java Persistence API*) combinada com um banco de dados em memória H2 para persistência. Adicionamos também a dependência *Lombok*, para facilitar a criação de *Getters*, *Setters* e construtores.Para gerenciamento de dependências do projeto utilizamos o Maven.
+Configuramos um projeto utilizando a *stack* Java 17, *Spring Boot* 3 e a interface JPA (*Java Persistence API*) combinada com um banco de dados em memória H2 para persistência. Adicionamos também a dependência *Lombok*, para facilitar a criação de *Getters*, *Setters* e construtores. Para gerenciamento de dependências do projeto utilizamos o Maven.
 
-Para versionamento estamos utilizando Git em combinação com a plataforma Github para orquestrar a colaboração dos esforços do time.Também, abordamos boas práticas , como alguns dos princípios do SOLID, como por exemplo,o Single Reponsability Principle, no qual, tivemos o cuidado de atribuir a cada classe uma única responsabilidade.Os membros do grupo estão trabalhando com suas IDEs preferência, seja IntelliJ, Eclipse ou VS Code.Dessa forma, foi implementado o arquivo `.gitignore` para não permitir o compartilhamento de configurações desses editores ao repositório do projeto.
+Para versionamento estamos utilizando Git em combinação com a plataforma Github para orquestrar a colaboração dos esforços do time. Também, abordamos boas práticas, como alguns dos princípios do SOLID, como por exemplo, o Single Reponsability Principle, no qual, tivemos o cuidado de atribuir a cada classe uma única responsabilidade. Os membros do grupo estão trabalhando com suas IDEs preferência, seja IntelliJ, Eclipse ou VS Code. Dessa forma, foi implementado o arquivo `.gitignore` para não permitir o compartilhamento de configurações desses editores ao repositório do projeto.
 
 Também consumimos uma API externa, a Viacep, para auxiliar na obtenção de dados de endereço no território brasileiro. Para realizar e processar a requisição utilizamos a interface *WebClient*, disponível no *Spring*.
 
@@ -30,15 +30,11 @@ Adotamos a arquitetura em camadas, nas quais, dividimos o projeto em pacotes a s
 
 A camada de domínio assume a administração das entidades inerentes às regras de negócio.
 
-Em paralelo, a camada de serviço é encarregada de implantar essas regras de negócio, 
-concentrando a complexidade neste ponto, o que contribui para a robustez do nosso sistema.
+Em paralelo, a camada de serviço é encarregada de implantar essas regras de negócio, concentrando a complexidade neste ponto, o que contribui para a robustez do nosso sistema.
 
-Já a camada controladora tem a função de lidar com as requisições recebidas, 
-bem como retornar as respostas adequadas para o cliente. Dessa maneira, 
-conseguimos manter a responsabilidade da camada controladora mais enxuta e com foco estrito em sua função.
+Já a camada controladora tem a função de lidar com as requisições recebidas, bem como retornar as respostas adequadas para o cliente. Dessa maneira, conseguimos manter a responsabilidade da camada controladora mais enxuta e com foco estrito em sua função.
 
-Essa distribuição de responsabilidades assegura a manutenção de um código mais limpo e organizado, 
-além de possibilitar um gerenciamento mais eficaz da complexidade na camada de serviço.
+Essa distribuição de responsabilidades assegura a manutenção de um código mais limpo e organizado, além de possibilitar um gerenciamento mais eficaz da complexidade na camada de serviço.
 
 ### Camada de Domínio
 
@@ -113,6 +109,4 @@ Para o consumo da API externa, utilizamos a interface *WebClient* disponível no
 ## Considerações Finais
 
 Portanto, podemos afirmar que a primeira fase do projeto foi concluída com sucesso. 
-A implementação das funcionalidades foi realizada de forma satisfatória, com a criação dos CRUDs das entidades de suporte e a utilização da arquitetura em camadas, alcançando assim os objetivos propostos. Além disso, a equipe conseguiu superar os desafios encontrados durante o desenvolvimento, 
-tais como a implementação do Handler Exception e do Via CEP, como também foi observado questões de boas práticas fundamentadas no SOLID e DDD,
-o que contribuiu para o aprendizado de todos os membros do grupo.
+A implementação das funcionalidades foi realizada de forma satisfatória, com a criação dos CRUDs das entidades de suporte e a utilização da arquitetura em camadas, alcançando assim os objetivos propostos. Além disso, a equipe conseguiu superar os desafios encontrados durante o desenvolvimento, tais como a implementação do Handler Exception e do Via CEP, como também foi observado questões de boas práticas fundamentadas no SOLID e DDD, o que contribuiu para o aprendizado de todos os membros do grupo.
