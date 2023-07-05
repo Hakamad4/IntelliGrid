@@ -31,7 +31,7 @@ Representational State Transfer (REST), promovendo uma estrutura eficiente e cla
 No DDD, a camada de domínio assume a administração das entidades inerentes às regras de negócio.
 
 Em paralelo, a camada de serviço é encarregada de implantar essas regras de negócio, 
-concentrando a complexidade concentrada neste ponto, o que contribui para a robustez do nosso sistema.
+concentrando a complexidade neste ponto, o que contribui para a robustez do nosso sistema.
 
 Já a camada controladora tem a função de lidar com as requisições recebidas, 
 bem como retornar as respostas adequadas para o cliente. Dessa maneira, 
