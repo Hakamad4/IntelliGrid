@@ -55,7 +55,7 @@ As seguintes entidades do subdomínio de suporte foram criadas:
 
 ### Camadas de Controladora e Serviço
 
-Seguindo os recomendações de separação de funcionalidade, a camada de controladora possui os métodos da API responsáveis pela interface com o mundo externo, enquanto da camada de serviço implementa as regras de negócio. Nesta fase do projeto, ambas as camadas foram responsáveis pela implementação do CRUD das entidades.
+Seguindo os recomendações de separação de funcionalidade, a camada de controladora possui os métodos da API responsáveis pela interface, enquanto da camada de serviço implementa as regras de negócio. Nesta fase do projeto, ambas as camadas foram responsáveis pela implementação do CRUD das entidades.
 
 Em nossa implementação a camada da controladora ficou responsável pela especificação dos endpoints e implantação do CRUD seguindo os preceitos do REST, como utilização dos verbos do protocolo HTML e a não persistência de estado entre as requisições.
 
@@ -65,17 +65,15 @@ Neste momento, todos os métodos de exclusão implementados efetivamente deletam
 
 ## Discussões
 
-Desafios encontrados
-
-- Viacep e webclient
+Nesta seção, iremos abordar as 
 
 - Persistência: JPA e Banco de dados H2;
 
-- Exceptions: a forma do Handler e a discussão de padronização de estrutura de código;
-
 - Validação de dados: expansão das anotações para CEP e e-mail utilizando Regex;
 
-- Lançamento de exceção quando não conseguir excluir.
+- Exceptions: a forma do Handler e a discussão de padronização de estrutura de código;
+
+- Viacep e webclient
 
 ### Persistência de dados
 
@@ -98,6 +96,7 @@ Adicionalmente, também utilizamos as anotações de validação do *framework J
 Além de deixar o código mais "limpo", também foi possível customizar e criar anotações para atender nossas necessidades. Adaptamos a anotação `@Email` para que validasse as informações contra um *regex* que fornecemos, ao invés do comportamento padrão para que o formato do endereço de e-mail aceito fosse mais robusto. Além disso, criamos a anotação `@CEP` para validar a recepção desse dado na estrutura `00000-000`, onde os dígitos `0` representam caracteres numéricos.
 
 ### Tratamento de Exceções
+
 Para o tratamento de exceções, optamos por utilizar um *Handler* para capturar as exceções lançadas e retornar uma resposta padronizada para o cliente. Dessa forma, não é necessário tratar as exceções em cada método da controladora, o que torna o código mais limpo e legível.
 E para padronizarmos o retorno dos erros na API criamos um DTO responsavel por encapsular e padronizar esses retornos, chamamos ele de ErrorResponse
 
@@ -112,4 +111,3 @@ e os objetivos propostos foram alcançados.
 Além disso, a equipe conseguiu superar os desafios encontrados durante o desenvolvimento, 
 tais como a implementação do Handler Exception e do Via CEP, 
 o que contribuiu para o aprendizado de todos os membros do grupo.
-
