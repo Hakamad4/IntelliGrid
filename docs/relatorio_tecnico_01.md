@@ -26,11 +26,15 @@ Por fim, para gerenciar nossa biblioteca de requisições, realização de teste
 
 ### Arquitetura
 
-padrões DDD (diretrizes) e REST (controller)
+Em nossa arquitetura, adotamos os padrões de Domain Driven Design (DDD) e Representational State Transfer (REST), promovendo uma estrutura eficiente e clara. No DDD, a camada de domínio assume a administração das entidades inerentes às regras de negócio.
 
-Responsabilidades: controller mais limpo, service com as regras de negócio
+Em paralelo, a camada de serviço é encarregada de implantar essas regras de negócio, deixando a complexidade concentrada neste ponto, o que contribui para a robustez do nosso sistema.
 
-#### Camada de Domínio
+Já a camada controladora tem a função de lidar com as requisições recebidas, bem como retornar as respostas adequadas para o cliente. Dessa maneira, conseguimos manter a responsabilidade da camada controladora mais enxuta e com foco estrito em sua função.
+
+Essa distribuição de responsabilidades assegura a manutenção de um código mais limpo e organizado, além de possibilitar um gerenciamento mais eficaz da complexidade na camada de serviço.
+
+### Camada de Domínio
 
 Neste primeiro momento, foram implementadas três entidades do **subdomínio de suporte** relativas ao cadastro de informações no sistema: Pessoa, Endereço e Eletrodoméstico. Além das entidades, também temos classes auxiliares de repositórios, responsáveis pela persistência de dados.
 
