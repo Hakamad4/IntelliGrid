@@ -65,15 +65,15 @@ Neste momento, todos os métodos de exclusão implementados efetivamente deletam
 
 ## Discussões
 
-Nesta seção, iremos abordar as 
+Nesta seção, iremos abordar alguns pontos de destaque no desenvolvimento desta primeira fase:
 
 - Persistência: JPA e Banco de dados H2;
 
 - Validação de dados: expansão das anotações para CEP e e-mail utilizando Regex;
 
-- Exceptions: a forma do Handler e a discussão de padronização de estrutura de código;
+- Tratamento de Exceções e Handler;
 
-- Viacep e webclient
+- Consumo de API externa Viacep e webclient.
 
 ### Persistência de dados
 
@@ -98,13 +98,15 @@ Além de deixar o código mais "limpo", também foi possível customizar e criar
 ### Tratamento de Exceções
 
 Para o tratamento de exceções, optamos por utilizar um *Handler* para capturar as exceções lançadas e retornar uma resposta padronizada para o cliente. Dessa forma, não é necessário tratar as exceções em cada método da controladora, o que torna o código mais limpo e legível.
-E para padronizarmos o retorno dos erros na API criamos um DTO responsavel por encapsular e padronizar esses retornos, chamamos ele de ErrorResponse
+E para padronizarmos o retorno dos erros na API criamos um DTO responsável por encapsular e padronizar esses retornos, chamamos ele de ErrorResponse
 
 ### Consumo de API externa
+
 Para o consumo da API externa, utilizamos a interface *WebClient* disponível no *Spring*. Essa interface nos permite realizar requisições HTTP de forma assíncrona, o que é interessante para evitar que a aplicação fique bloqueada enquanto aguarda a resposta da requisição. Além disso, o *WebClient* também nos permite realizar o mapeamento dos dados recebidos para objetos Java, o que facilita o uso dos dados recebidos.
-Estamos utlizando como API externa o [Via Cep](https://viacep.com.br/), que nos permite obter dados de endereços brasileiros a partir de um CEP.
+Estamos utilizando como API externa o [Via Cep](https://viacep.com.br/), que nos permite obter dados de endereços brasileiros a partir de um CEP.
 
 ## Considerações Finais
+
 Então podemos afirmar que a primeira fase do projeto foi concluída com sucesso. 
 A implementação das funcionalidades foi realizada de forma satisfatória, 
 e os objetivos propostos foram alcançados. 
