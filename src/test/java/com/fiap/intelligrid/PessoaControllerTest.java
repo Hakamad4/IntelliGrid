@@ -54,4 +54,35 @@ class PessoaControllerTest {
 						.content(objectMapper.writeValueAsString(pessoaRequest)))
 				.andExpect(status().is(400));
 	}
+
+
+	@Test
+	void testPostPessoaInvalidBirthdate() throws Exception {
+		PessoaRequest pessoaRequest = new PessoaRequest(
+				"Fernando Enrico",
+				LocalDate.now(),
+				Genero.MASCULINO,
+				"Fernando.Enrico@gmail.com"
+		);
+
+		mockMvc.perform(post("/pessoa")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(objectMapper.writeValueAsString(pessoaRequest)))
+				.andExpect(status().is(400));
+	}
+
+	@Test
+	void testPostPessoaNull() throws Exception {
+		PessoaRequest pessoaRequest = new PessoaRequest(
+				null,
+				LocalDate.parse("1990-05-10"),
+				Genero.MASCULINO,
+				null
+		);
+
+		mockMvc.perform(post("/pessoa")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(objectMapper.writeValueAsString(pessoaRequest)))
+				.andExpect(status().is(400));
+	}
 }
