@@ -33,12 +33,12 @@ public class TratadorErros {
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity tratarErroValidation(MethodArgumentNotValidException ex) {
+	public ResponseEntity<ErrorResponse> tratarErroValidation(MethodArgumentNotValidException ex) {
 		List<FieldError> erros = ex.getFieldErrors();
 
 		return ResponseEntity
 				.badRequest()
-				.body   (new ErrorResponse(
+				.body(new ErrorResponse(
 						"Erro de validação",
 						HttpStatus.BAD_REQUEST,
 						erros.stream().map(CamposErroResponse::new).toList())
