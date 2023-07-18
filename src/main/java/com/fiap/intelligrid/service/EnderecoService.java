@@ -77,4 +77,10 @@ public class EnderecoService {
 			throw new EnderecoNotFoundException("Endereço não encontrado");
 		}
 	}
+
+    public List<Endereco> buscaFiltrada(String bairro, String cidade, String logradouro, String cep) {
+
+		return enderecoRepository.findByRuaBairroCidadeCep(bairro, logradouro, cidade, cep);
+
+	}
 }
