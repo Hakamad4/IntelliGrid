@@ -28,9 +28,17 @@ public class PessoaService {
 
     //TODO grau de parentesco na pessoa
     public List<PessoaResponse> buscaFiltrada(String nome, String sexo) {
+        Genero genero = null;
 
-
-        return pessoaRepository.findByNomeSexo(nome, Genero.valueOf(sexo)).stream()
+        if (sexo != null && !sexo.isEmpty()) {
+            try {
+                genero = Genero.valueOf(sexo.toUpperCase());
+            } catch (IllegalArgumentException ex) {
+                //TODO trocar exceção
+               throw new IllegalArgumentException("Sexo inválido");
+            }
+        }
+        return pessoaRepository.findByNomeSexo(nome, genero).stream()
                 .map(PessoaResponse::new)
                 .toList();
     }

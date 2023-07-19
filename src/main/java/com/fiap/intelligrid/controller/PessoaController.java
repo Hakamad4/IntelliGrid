@@ -29,12 +29,11 @@ public class PessoaController {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.buscarTodos());
     }
 
-    @GetMapping("/busca")
+    @GetMapping("/filtrar")
     public ResponseEntity<List<PessoaResponse>> buscaFiltrada(@RequestParam(required = false) String nome,
                                                               @RequestParam(required = false) String sexo) {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.buscaFiltrada(nome, sexo));
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<PessoaResponse> buscarPessoaPorId(@PathVariable Long id) throws PessoaNotFoundException {
