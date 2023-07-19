@@ -80,7 +80,7 @@ public class EnderecoService {
 
     public List<Endereco> buscaFiltrada(String bairro, String cidade, String logradouro, String cep) {
 
-		return enderecoRepository.findByRuaBairroCidadeCep(bairro, logradouro, cidade, cep);
+		return enderecoRepository.findByRuaBairroCidadeCep(logradouro, bairro, cidade, cep);
 
 	}
 }
