@@ -12,9 +12,7 @@ import java.util.List;
 public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 
 	long deleteEnderecoById(Long id);
-
-	List<Endereco> findByBairroOrLogradouroOrCidadeOrCep(String bairro, String logradouro, String cidade, String cep);
-
+	
 	@Query("SELECT e FROM Endereco e WHERE " +
 			"(:logradouro IS NULL OR e.logradouro = :logradouro) AND " +
 			"(:bairro IS NULL OR e.bairro = :bairro) AND " +

@@ -1,9 +1,10 @@
 package com.fiap.intelligrid.controller;
 
-import com.fiap.intelligrid.domain.entity.Pessoa;
-import com.fiap.intelligrid.controller.request.PessoaRequest;
 import com.fiap.intelligrid.controller.request.PessoaAtualizacaoRequest;
+import com.fiap.intelligrid.controller.request.PessoaRequest;
 import com.fiap.intelligrid.controller.response.PessoaResponse;
+import com.fiap.intelligrid.domain.entity.Genero;
+import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
 import com.fiap.intelligrid.service.PessoaService;
 import jakarta.validation.Valid;
@@ -27,6 +28,13 @@ public class PessoaController {
     public ResponseEntity<List<PessoaResponse>> buscarPessoas() {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.buscarTodos());
     }
+
+    @GetMapping("/busca")
+    public ResponseEntity<List<PessoaResponse>> buscaFiltrada(@RequestParam(required = false) String nome,
+                                                              @RequestParam(required = false) String sexo) {
+        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.buscaFiltrada(nome, sexo));
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<PessoaResponse> buscarPessoaPorId(@PathVariable Long id) throws PessoaNotFoundException {

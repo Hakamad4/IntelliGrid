@@ -33,15 +33,14 @@ public class EnderecoController {
 		return ResponseEntity.ok(enderecoService.buscarPorId(id));
 	}
 
-	@GetMapping("/busca")
-	public ResponseEntity<?> fetchById(	@RequestParam(required = false) String bairro,
-										@RequestParam(required = false) String cidade,
-										@RequestParam(required = false) String logradouro,
-										@RequestParam(required = false) String cep) {
+	@GetMapping
+	public ResponseEntity<List<EnderecoResponse>> buscaFiltrada(@RequestParam(required = false) String bairro,
+																@RequestParam(required = false) String cidade,
+																@RequestParam(required = false) String logradouro,
+																@RequestParam(required = false) String cep) {
 
 		return ResponseEntity.ok(enderecoService.buscaFiltrada(bairro, cidade, logradouro, cep));
 	}
-
 
 	@GetMapping("/pessoa/{pessoaId}")
 	public ResponseEntity<List<EnderecoResponse>> fetchByPerson(@PathVariable Long pessoaId) throws PessoaNotFoundException {
