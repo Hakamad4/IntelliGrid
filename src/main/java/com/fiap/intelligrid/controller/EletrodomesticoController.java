@@ -34,6 +34,14 @@ public class EletrodomesticoController {
 	public ResponseEntity<EletrodomesticoResponse> buscarEletroeletronicoPorId(@PathVariable Long id) throws EletrodomesticoNotFoundException {
 		return ResponseEntity.ok(eletrodomesticoService.buscarResponsePorId(id));
 	}
+
+	@GetMapping("/busca")
+	public ResponseEntity<?> buscar(	@RequestParam(required = false) String nome,
+										@RequestParam(required = false) String modelo,
+										@RequestParam(required = false) String potencia) {
+
+		return ResponseEntity.ok(eletrodomesticoService.buscaFiltrada(nome, modelo, potencia));
+	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<EletrodomesticoRequest> excluirEletrodomestico(@PathVariable Long id) throws EletrodomesticoNotFoundException {
