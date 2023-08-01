@@ -27,7 +27,7 @@ class PessoaControllerTest {
 
 	@Test
 	void testPostPessoaSuccess() throws Exception {
-		PessoaRequest pessoaRequest = new PessoaRequest(
+		var pessoaRequest = new PessoaRequest(
 				"Denilson da Massa",
 				LocalDate.parse("1990-05-10"),
 				Genero.MASCULINO,
@@ -42,7 +42,7 @@ class PessoaControllerTest {
 
 	@Test
 	void testPostPessoaInvalidMail() throws Exception {
-		PessoaRequest pessoaRequest = new PessoaRequest(
+		var pessoaRequest = new PessoaRequest(
 				"Denilson da Massa",
 				LocalDate.parse("1990-05-10"),
 				Genero.MASCULINO,
@@ -58,7 +58,7 @@ class PessoaControllerTest {
 
 	@Test
 	void testPostPessoaInvalidBirthdate() throws Exception {
-		PessoaRequest pessoaRequest = new PessoaRequest(
+		var pessoaRequest = new PessoaRequest(
 				"Fernando Enrico",
 				LocalDate.now(),
 				Genero.MASCULINO,
@@ -73,10 +73,10 @@ class PessoaControllerTest {
 
 	@Test
 	void testPostPessoaNull() throws Exception {
-		PessoaRequest pessoaRequest = new PessoaRequest(
+		var pessoaRequest = new PessoaRequest(
 				null,
-				LocalDate.parse("1990-05-10"),
-				Genero.MASCULINO,
+				null,
+				null,
 				null
 		);
 
