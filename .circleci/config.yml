@@ -1,10 +1,10 @@
 version: 2.1
 orbs:
-  maven: cimg/maven@0.0.12
+  maven: circleci/maven@0.0.12
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:17-jdk
+      - image: cimg/openjdk:17-jdk
     steps:
       - checkout
       - maven/with_cache:
