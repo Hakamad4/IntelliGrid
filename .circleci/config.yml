@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  maven: circleci/maven@0.0.12
+  maven: cimg/maven@0.0.12
 jobs:
   build:
     docker:
