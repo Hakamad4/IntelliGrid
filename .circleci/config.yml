@@ -1,10 +1,10 @@
 version: 2.1
 orbs:
-  maven: circleci/maven@0.0.12
+  maven: circleci/maven@1.4.1
 jobs:
-  build-and-test:
+  build:
     docker:
-      - image: circleci/openjdk:17-jdk
+      - image: cimg/openjdk:17.0
     steps:
       - checkout
       - maven/with_cache:
@@ -13,9 +13,10 @@ jobs:
       - run: mvn test
 workflows:
   version: 2
-  build-and-test:
+  build:
     jobs:
-      - build-and-test:
+      - build:
           filters:
             branches:
-              only: main
+              only:
+               - main
