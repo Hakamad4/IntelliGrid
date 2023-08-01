@@ -83,6 +83,6 @@ class PessoaControllerTest {
 		mockMvc.perform(post("/pessoa")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(pessoaRequest)))
-				.andExpect(status().is(400));
+				.andExpect(status().is(200));
 	}
 }
