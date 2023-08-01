@@ -1,16 +1,29 @@
 version: 2.1
-orbs:
-  maven: circleci/maven@0.0.12
 jobs:
   build:
     docker:
-      - image: cimg/openjdk:17-jdk
+      - image: circleci/openjdk:17-jdk
     steps:
       - checkout
-      - maven/with_cache:
-          steps:
-            - run: mvn dependency:go-offline
-      - run: mvn test
+      - run:
+          name: Install Maven
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y maven
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            - v1-dependencies-
+      - run:
+          name: Download Dependencies
+          command: mvn dependency:go-offline
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+      - run:
+          name: Run Tests
+          command: mvn test
 workflows:
   version: 2
   build:
