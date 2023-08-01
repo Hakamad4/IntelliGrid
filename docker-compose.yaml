@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  mysql_db:
+  mysql:
     image: mysql:5.7
-    container_name: mysql_db
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: intelligrid
