@@ -1,14 +1,9 @@
 package com.fiap.intelligrid.domain.entity;
 
 
-
-
 import com.fiap.intelligrid.controller.request.EletrodomesticoRequest;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "eletrodomestico")
 public class Eletrodomestico {
 
 	@Id
@@ -27,10 +23,10 @@ public class Eletrodomestico {
 	private String nome;
 	private String modelo;
 	private String potencia;
-	
-	 public Eletrodomestico(EletrodomesticoRequest eletroeletronicoRequest) {
-	        this.nome = eletroeletronicoRequest.nome();
-	        this.modelo = eletroeletronicoRequest.modelo();
-	        this.potencia = eletroeletronicoRequest.potencia();
-	    }
+
+	public Eletrodomestico(EletrodomesticoRequest eletroeletronicoRequest) {
+		this.nome = eletroeletronicoRequest.nome();
+		this.modelo = eletroeletronicoRequest.modelo();
+		this.potencia = eletroeletronicoRequest.potencia();
+	}
 }
