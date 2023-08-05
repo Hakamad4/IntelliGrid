@@ -13,7 +13,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
@@ -26,8 +25,6 @@ public class EletrodomesticoControllerTest {
 
     @Mock
     private EletrodomesticoService eletrodomesticoService;
-
-    MockMvc mockMvc;
 
 
     @Test
