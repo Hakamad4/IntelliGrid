@@ -3,6 +3,7 @@ package com.fiap.intelligrid.controller.request;
 import com.fiap.intelligrid.domain.entity.Eletrodomestico;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 
 //to json
 public record EletrodomesticoRequest(
