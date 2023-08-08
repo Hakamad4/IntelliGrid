@@ -25,6 +25,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class EletrodomesticoServiceTest {
+    
     @InjectMocks
     EletrodomesticoService eletrodomesticoService;
 
@@ -103,6 +104,7 @@ public class EletrodomesticoServiceTest {
                     Assertions.assertEquals(eletrodomestico.getPotencia(), resultado.potencia());
         }
     }
+    
     @Test
     public void deveDeletarEletrodomesticosPorId() throws Exception {
 
