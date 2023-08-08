@@ -6,12 +6,12 @@ import lombok.*;
 
 import java.io.Serializable;
 
-@Entity
-@Table(name = "endereco")
 @Getter
 @Setter
 @EqualsAndHashCode
 @AllArgsConstructor @NoArgsConstructor
+@Entity
+@Table(name = "endereco")
 public class Endereco implements Serializable {
 
 	@Id
@@ -44,3 +44,6 @@ public class Endereco implements Serializable {
 	private Pessoa pessoa;
 
 }
+
+
+
