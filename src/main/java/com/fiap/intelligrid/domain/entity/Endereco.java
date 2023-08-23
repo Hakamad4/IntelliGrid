@@ -11,7 +11,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode
-@AllArgsConstructor @NoArgsConstructor
+@AllArgsConstructor 
+@NoArgsConstructor
+
 public class Endereco implements Serializable {
 
 	@Id

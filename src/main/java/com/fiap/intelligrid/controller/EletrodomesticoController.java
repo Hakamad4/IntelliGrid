@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import com.fiap.intelligrid.controller.request.EletrodomesticoRequest;
 import com.fiap.intelligrid.controller.request.EletrodomesticoAtualizacaoRequest;
 import com.fiap.intelligrid.controller.response.EletrodomesticoResponse;
+import com.fiap.intelligrid.exceptions.EletrodomesticoBadRequestException;
 import com.fiap.intelligrid.exceptions.EletrodomesticoNotFoundException;
-import com.fiap.intelligrid.exceptions.EnderecoBadRequestException;
 import com.fiap.intelligrid.service.EletrodomesticoService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +25,7 @@ public class EletrodomesticoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<EletrodomesticoRequest> cadastrarEletrodomestico(@RequestBody @Valid EletrodomesticoRequest eletrodomesticoRequest) throws EnderecoBadRequestException {
+	public ResponseEntity<EletrodomesticoRequest> cadastrarEletrodomestico(@RequestBody @Valid EletrodomesticoRequest eletrodomesticoRequest) throws EletrodomesticoBadRequestException {
 		eletrodomesticoService.salvar(eletrodomesticoRequest);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
