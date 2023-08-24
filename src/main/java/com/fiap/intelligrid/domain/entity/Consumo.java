@@ -2,42 +2,46 @@ package com.fiap.intelligrid.domain.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fiap.intelligrid.controller.request.ConsumoRequest;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "consumo")
+@ToString
 public class Consumo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private double potenciaTotal;
-	private LocalDateTime tempo;
-	private LocalDate dia ;
-	
-//	@Autowired
-//	private Eletrodomestico eletrodomestico;
-//	@Autowired
-//	private Pessoa pessoa;
-	
-	public Consumo(Long id, double potenciaTotal) {
-		this.id = id;
-		this.potenciaTotal = potenciaTotal;
+	private long tempo;
+	private LocalDate dia;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "eletrodomestico_id")
+	@JsonBackReference
+	private Eletrodomestico eletrodomestico;
+
+	@PrePersist
+	private void prePersit() {
+		dia = LocalDate.now();
 	}
-	
-	public Consumo(ConsumoRequest consumoRequest) {
-		this.potenciaTotal = consumoRequest.potenciaTotal();
-	}
+
 }

@@ -17,6 +17,7 @@ import com.fiap.intelligrid.controller.request.ConsumoRequest;
 import com.fiap.intelligrid.controller.response.ConsumoResponse;
 import com.fiap.intelligrid.exceptions.ConsumoBadRequestException;
 import com.fiap.intelligrid.exceptions.ConsumoNotFoundException;
+import com.fiap.intelligrid.exceptions.EletrodomesticoNotFoundException;
 import com.fiap.intelligrid.service.ConsumoService;
 
 import jakarta.validation.Valid;
@@ -26,37 +27,38 @@ import jakarta.validation.Valid;
 public class ConsumoController {
 
 	private final ConsumoService consumoService;
-	
+
 	public ConsumoController(ConsumoService consumoService) {
 		this.consumoService = consumoService;
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<ConsumoRequest> cadastrarConsumo(@RequestBody @Valid ConsumoRequest consumoRequest) throws ConsumoBadRequestException {
+	public ResponseEntity<ConsumoRequest> cadastrarConsumo(@RequestBody @Valid ConsumoRequest consumoRequest)
+			throws ConsumoBadRequestException, EletrodomesticoNotFoundException {
 		consumoService.salvar(consumoRequest);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<ConsumoResponse> buscarConsumoPorId(@PathVariable Long id) throws ConsumoNotFoundException {
 		return ResponseEntity.ok(consumoService.buscarResponsePorId(id));
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<ConsumoRequest> excluirConsumo(@PathVariable Long id) throws ConsumoNotFoundException {
 		consumoService.deletar(id);
-	    return ResponseEntity.ok().build();
+		return ResponseEntity.ok().build();
 	}
-	
+
 	@PutMapping("/{id}")
-	public ResponseEntity<ConsumoResponse> atualizarConsumo(@PathVariable Long id, @RequestBody @Valid ConsumoAtualizacaoRequest consumoRequest)
-	            throws ConsumoNotFoundException {
-	    return ResponseEntity.ok(consumoService.atualizaConsumo(id, consumoRequest ));
+	public ResponseEntity<ConsumoResponse> atualizarConsumo(@PathVariable Long id,
+			@RequestBody @Valid ConsumoAtualizacaoRequest consumoRequest) throws ConsumoNotFoundException {
+		return ResponseEntity.ok(consumoService.atualizaConsumo(id, consumoRequest));
 	}
-	
+
 	@GetMapping
 	public ResponseEntity<List<ConsumoResponse>> buscarConsumo() {
-	    return ResponseEntity.status(HttpStatus.OK).body(consumoService.buscarTodos());
+		return ResponseEntity.status(HttpStatus.OK).body(consumoService.buscarTodos());
 	}
-	
+
 }

@@ -63,7 +63,7 @@ public class EletrodomesticoService {
         if (dadosAtualizacao.modelo() != null) {
             eletrodomestico.setModelo(dadosAtualizacao.modelo());
         }
-        if (dadosAtualizacao.potencia() != null) {
+        if (dadosAtualizacao.potencia() != 0) {
             eletrodomestico.setPotencia(dadosAtualizacao.potencia());
         }
         return new EletrodomesticoResponse(eletrodomestico);
