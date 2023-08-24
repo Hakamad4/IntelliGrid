@@ -34,7 +34,7 @@ public class Consumo {
 	private long tempo;
 	private LocalDate dia;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "eletrodomestico_id")
 	@JsonBackReference
 	private Eletrodomestico eletrodomestico;

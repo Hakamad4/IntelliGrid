@@ -72,7 +72,7 @@ public class ConsumoService {
 	public Consumo buscarPorId(Long id) throws ConsumoNotFoundException {
         Optional<Consumo> consumo = consumoRepository.findById(id);
         if (consumo.isEmpty()) {
-            throw new ConsumoNotFoundException("Eletrodomestico não encontrado");
+            throw new ConsumoNotFoundException("Consumo não encontrado");
         }
         return consumo.get();
     }
