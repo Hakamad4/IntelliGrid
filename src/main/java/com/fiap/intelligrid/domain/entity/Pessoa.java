@@ -1,6 +1,8 @@
 package com.fiap.intelligrid.domain.entity;
 
 import com.fiap.intelligrid.controller.request.PessoaRequest;
+import com.fiap.intelligrid.domain.entity.enums.Genero;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

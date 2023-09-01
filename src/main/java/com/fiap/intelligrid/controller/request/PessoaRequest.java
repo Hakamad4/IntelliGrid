@@ -1,7 +1,8 @@
 package com.fiap.intelligrid.controller.request;
 
-import com.fiap.intelligrid.domain.entity.Genero;
 import com.fiap.intelligrid.domain.entity.Pessoa;
+import com.fiap.intelligrid.domain.entity.enums.Genero;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

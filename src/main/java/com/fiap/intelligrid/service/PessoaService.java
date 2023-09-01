@@ -1,7 +1,7 @@
 package com.fiap.intelligrid.service;
 
-import com.fiap.intelligrid.domain.entity.Genero;
 import com.fiap.intelligrid.domain.entity.Pessoa;
+import com.fiap.intelligrid.domain.entity.enums.Genero;
 import com.fiap.intelligrid.domain.repository.PessoaRepository;
 import com.fiap.intelligrid.controller.request.PessoaRequest;
 import com.fiap.intelligrid.controller.request.PessoaAtualizacaoRequest;
