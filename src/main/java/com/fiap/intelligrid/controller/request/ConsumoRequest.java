@@ -12,7 +12,7 @@ public record ConsumoRequest(
 		
 		@NotNull
 		@JsonProperty("tempo_in_ms")
-        Long tempo
+        long tempo
 	
 		) {
 

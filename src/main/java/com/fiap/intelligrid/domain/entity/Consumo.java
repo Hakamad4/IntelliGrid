@@ -1,10 +1,7 @@
 package com.fiap.intelligrid.domain.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fiap.intelligrid.controller.request.ConsumoRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;

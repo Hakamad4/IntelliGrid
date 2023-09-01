@@ -29,7 +29,7 @@ public class EletrodomesticoControllerTest {
 
     @Test
     public void deveCriarEletrodomesticoComSucesso() throws Exception{
-        EletrodomesticoRequest request =  new EletrodomesticoRequest(null,"teste","arno", "220");
+        EletrodomesticoRequest request =  new EletrodomesticoRequest(null,"teste","arno", 22.00,null);
         ResponseEntity<EletrodomesticoRequest> response = eletrodomesticoController.cadastrarEletrodomestico(request);
         Mockito.verify(eletrodomesticoService,Mockito.times(1)).salvar(request);
         assertEquals(HttpStatus.CREATED,response.getStatusCode());
@@ -38,7 +38,7 @@ public class EletrodomesticoControllerTest {
 
     @Test
     public void deveRetornarEletrodomesticoPorId()throws Exception{
-        EletrodomesticoResponse response =  new EletrodomesticoResponse(1L,"teste","arno", "220");
+        EletrodomesticoResponse response =  new EletrodomesticoResponse(1L,"teste","arno", 22.00,null);
         ResponseEntity<EletrodomesticoResponse> response1 = eletrodomesticoController.buscarEletroeletronicoPorId(response.id());
         Mockito.verify(eletrodomesticoService,Mockito.times(1)).buscarResponsePorId(response.id());
         assertEquals(HttpStatus.OK,response1.getStatusCode());
@@ -46,7 +46,7 @@ public class EletrodomesticoControllerTest {
 
     @Test
     public void deveDeletarEletrodomesticoPorId() throws Exception {
-        EletrodomesticoRequest request =  new EletrodomesticoRequest(1L,"teste","arno", "220");
+        EletrodomesticoRequest request =  new EletrodomesticoRequest(1L,"teste","arno", 22.00,null);
         ResponseEntity<EletrodomesticoRequest> response = eletrodomesticoController.excluirEletrodomestico(request.id());
         Mockito.verify(eletrodomesticoService,Mockito.times(1)).deletar(request.id());
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -54,8 +54,8 @@ public class EletrodomesticoControllerTest {
 
     @Test
     public void deveAtualizarEletrodomesticoPorId()throws Exception{
-        EletrodomesticoAtualizacaoRequest request =  new EletrodomesticoAtualizacaoRequest("teste","arno", "220");
-        EletrodomesticoResponse response =  new EletrodomesticoResponse(1L,"teste","arno", "220");
+        EletrodomesticoAtualizacaoRequest request =  new EletrodomesticoAtualizacaoRequest("teste","arno", 22.00,null);
+        EletrodomesticoResponse response =  new EletrodomesticoResponse(1L,"teste","arno", 22.00,null);
         ResponseEntity<EletrodomesticoResponse> response1 = eletrodomesticoController.atualizarEletrodomestico(response.id(),request);
         Mockito.verify(eletrodomesticoService, Mockito.times(1)).atualizaEletrodomestico(response.id(),request);
         assertEquals(HttpStatus.OK,response1.getStatusCode());

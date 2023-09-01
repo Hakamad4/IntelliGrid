@@ -1,5 +1,6 @@
 package com.fiap.intelligrid.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -32,6 +33,9 @@ public class ConsumoService {
 	@Transactional
 	public void salvar(ConsumoRequest consumoRequest) throws EletrodomesticoNotFoundException {
 	
+		
+		System.out.println("consumoRequest eletrodomesticoId\n"+consumoRequest.eletrodomesticoId()+"\n");
+		
 		Optional<Eletrodomestico> eletrodomesticoOpt = eletrodomesticoRepository.findById(consumoRequest.eletrodomesticoId());
 		
 		if (!eletrodomesticoOpt.isPresent()) {
@@ -43,9 +47,35 @@ public class ConsumoService {
 		Consumo consumo = new Consumo();
 		consumo.setEletrodomestico(eletrodomestico);
 		consumo.setTempo(consumoRequest.tempo());
-		var totalHoras = TimeUnit.MILLISECONDS.toHours( consumoRequest.tempo() );
-		consumo.setPotenciaTotal( totalHoras*eletrodomestico.getPotencia());
-		System.out.println("\n"+consumo+"\n");
+		
+		System.out.println("consumo tempo\n"+consumo.getTempo()+"\n");
+		
+		System.out.println("consumoRequest tempo\n"+consumoRequest.tempo()+"\n");
+		
+		 long millis = 3600000;
+		
+		 //consumoRequest.tempo()
+		 
+		// long hours = TimeUnit.MINUTES.toHours(120);
+		 
+		long hours = TimeUnit.MILLISECONDS.toHours(millis) % 24;
+	    long minutes = TimeUnit.MILLISECONDS.toMinutes(millis) % 60;
+	    long seconds = TimeUnit.MILLISECONDS.toSeconds(millis) % 60;
+	    long milliseconds = millis % 1000;
+		 
+		 
+		 
+		System.out.println(hours+":"+minutes+":"+seconds+":"+milliseconds);
+		 
+		 			        
+		long totalHoras = TimeUnit.MILLISECONDS.toHours( millis );
+		
+		BigDecimal result4 = BigDecimal.valueOf(totalHoras);
+		
+		System.out.println("\ntotalHoras "+totalHoras+" - result4 "+result4+"\n");
+		
+		consumo.setPotenciaTotal( totalHoras*eletrodomestico.getPotencia() );
+	//	System.out.println("\n"+consumo+"\n");
 		consumoRepository.save(consumo);
 		
 		
