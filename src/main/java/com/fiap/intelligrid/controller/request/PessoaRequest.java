@@ -22,7 +22,9 @@ public record PessoaRequest(
 		Genero genero,
 		@NotBlank
 		@Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
-		String email) {
+		String email,
+		String parentesco,
+		Boolean ehAdmin) {
 
 	public Pessoa toEntity() {
 		return new Pessoa(
@@ -31,6 +33,8 @@ public record PessoaRequest(
 				email,
 				dataNascimento,
 				genero,
+				parentesco,
+				ehAdmin,
 				null
 		);
 	}

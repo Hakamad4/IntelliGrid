@@ -5,8 +5,8 @@ import com.fiap.intelligrid.domain.entity.enums.Genero;
 
 import java.time.LocalDate;
 
-public record PessoaResponse(Long id, String nome, String email, LocalDate dataNascimento, Genero genero) {
+public record PessoaResponse(Long id, String nome, String email, LocalDate dataNascimento, Genero genero, String parentesco) {
     public PessoaResponse(Pessoa pessoa) {
-        this(pessoa.getId(), pessoa.getNome(), pessoa.getEmail(), pessoa.getDataNascimento(), pessoa.getGenero());
+        this(pessoa.getId(), pessoa.getNome(), pessoa.getEmail(), pessoa.getDataNascimento(), pessoa.getGenero(), pessoa.getParentesco());
     }
 }

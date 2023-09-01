@@ -34,6 +34,10 @@ public class Pessoa {
     @Enumerated(EnumType.STRING)
     private Genero genero;
 
+    private String parentesco;
+
+    private Boolean ehAdmin;
+
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Endereco> enderecos = new ArrayList<>();
 
@@ -42,6 +46,7 @@ public class Pessoa {
         this.dataNascimento = pessoaRequest.dataNascimento();
         this.genero = pessoaRequest.genero();
         this.email = pessoaRequest.email();
+        this.parentesco = pessoaRequest.parentesco();
     }
 
     public void addEndereco(Endereco endereco) {
