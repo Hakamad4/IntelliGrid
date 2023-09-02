@@ -51,4 +51,9 @@ public class EletrodomesticoController {
 	public ResponseEntity<List<EletrodomesticoResponse>> buscarEletrodomesticos() {
 	    return ResponseEntity.status(HttpStatus.OK).body(eletrodomesticoService.buscarTodos());
 	}
+	
+	
+	
+	
+	
 }

@@ -6,8 +6,8 @@ import com.fiap.intelligrid.domain.entity.Consumo;
 import com.fiap.intelligrid.domain.entity.Eletrodomestico;
 
 
-public record EletrodomesticoResponse (Long id, String nome, String modelo, double potencia, List<Consumo> consumos) {
+public record EletrodomesticoResponse (Long id, String nome, String modelo, double potencia) {
     public EletrodomesticoResponse(Eletrodomestico eletrodomestico) {
-        this(eletrodomestico.getId(), eletrodomestico.getNome(), eletrodomestico.getModelo(), eletrodomestico.getPotencia(), eletrodomestico.getConsumos());
+        this(eletrodomestico.getId(), eletrodomestico.getNome(), eletrodomestico.getModelo(), eletrodomestico.getPotencia());
     }
 }

@@ -1,6 +1,7 @@
 package com.fiap.intelligrid.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -74,7 +75,7 @@ public class ConsumoService {
 		
 		System.out.println("\ntotalHoras "+totalHoras+" - result4 "+result4+"\n");
 		
-		consumo.setPotenciaTotal( totalHoras*eletrodomestico.getPotencia() );
+		consumo.setConsumoTotal( totalHoras*eletrodomestico.getPotencia() );
 	//	System.out.println("\n"+consumo+"\n");
 		consumoRepository.save(consumo);
 		
@@ -93,6 +94,10 @@ public class ConsumoService {
 	        return consumoRepository.findAll().stream().map(ConsumoResponse::new).toList();
 	}
 	
+	public List<Consumo> buscarPorPeriodo(LocalDate inicio, LocalDate termino) {
+        return consumoRepository.findByDia( inicio, termino);
+    }
+	
 	public ConsumoResponse buscarResponsePorId(Long id) throws ConsumoNotFoundException {
 	        return new ConsumoResponse(
 	                buscarPorId(id)
@@ -110,8 +115,8 @@ public class ConsumoService {
 	@Transactional
 	public ConsumoResponse atualizaConsumo(Long id, ConsumoAtualizacaoRequest dadosAtualizacao) throws ConsumoNotFoundException {
 		Consumo consumo = buscarPorId(id);
-	        if (dadosAtualizacao.potenciaTotal() !=  0.0) {
-	        	consumo.setPotenciaTotal(dadosAtualizacao.potenciaTotal());
+	        if (dadosAtualizacao.consumoTotal() !=  0.0) {
+	        	consumo.setConsumoTotal(dadosAtualizacao.consumoTotal());
 	        }
 	        if (dadosAtualizacao.tempo() != null) {
 	        	consumo.setTempo(dadosAtualizacao.tempo());

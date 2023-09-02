@@ -1,5 +1,6 @@
 package com.fiap.intelligrid.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.fiap.intelligrid.controller.request.ConsumoAtualizacaoRequest;
 import com.fiap.intelligrid.controller.request.ConsumoRequest;
 import com.fiap.intelligrid.controller.response.ConsumoResponse;
+import com.fiap.intelligrid.domain.entity.Consumo;
 import com.fiap.intelligrid.exceptions.ConsumoBadRequestException;
 import com.fiap.intelligrid.exceptions.ConsumoNotFoundException;
 import com.fiap.intelligrid.exceptions.EletrodomesticoNotFoundException;
@@ -61,4 +64,9 @@ public class ConsumoController {
 		return ResponseEntity.status(HttpStatus.OK).body(consumoService.buscarTodos());
 	}
 
+	@GetMapping("/findByPeriod")
+	public ResponseEntity<List<?>> buscarConsumoPorPeriodoId(@RequestParam LocalDate inicio, LocalDate termino) throws ConsumoNotFoundException {
+		return ResponseEntity.ok(consumoService.buscarPorPeriodo(inicio, termino));
+	}
+	
 }

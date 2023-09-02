@@ -1,6 +1,7 @@
 package com.fiap.intelligrid.domain.entity;
 
 import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -27,7 +28,7 @@ public class Consumo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private double potenciaTotal;
+	private double consumoTotal;
 	private long tempo;
 	private LocalDate dia;
 

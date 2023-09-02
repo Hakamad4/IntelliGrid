@@ -41,6 +41,12 @@ public class EletrodomesticoService {
                 buscarPorId(id)
         );
     }
+    
+    public EletrodomesticoResponse buscarResponsePorPeriodoId(Long id) throws EletrodomesticoNotFoundException {
+        return new EletrodomesticoResponse(
+                buscarPorId(id)
+        );
+    }
 
     public List<EletrodomesticoResponse> buscarTodos() {
         return eletrodomesticoRepository.findAll().stream().map(EletrodomesticoResponse::new).toList();
