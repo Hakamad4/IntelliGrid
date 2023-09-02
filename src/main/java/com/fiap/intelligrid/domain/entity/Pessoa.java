@@ -41,6 +41,10 @@ public class Pessoa {
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Endereco> enderecos = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     public Pessoa(PessoaRequest pessoaRequest) {
         this.nome = pessoaRequest.nome();
         this.dataNascimento = pessoaRequest.dataNascimento();

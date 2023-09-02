@@ -5,6 +5,7 @@ import com.fiap.intelligrid.controller.request.PessoaRequest;
 import com.fiap.intelligrid.controller.response.PessoaResponse;
 import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
+import com.fiap.intelligrid.exceptions.UsuarioNotFoundException;
 import com.fiap.intelligrid.service.PessoaService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class PessoaController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> cadastrarPessoa(@RequestBody @Valid PessoaRequest pessoaRequest) {
+    public ResponseEntity<Void> cadastrarPessoa(@RequestBody @Valid PessoaRequest pessoaRequest) throws UsuarioNotFoundException {
         pessoaService.salvar(pessoaRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

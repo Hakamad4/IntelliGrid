@@ -3,10 +3,13 @@ package com.fiap.intelligrid.service;
 import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.domain.entity.enums.Genero;
 import com.fiap.intelligrid.domain.repository.PessoaRepository;
+import com.fiap.intelligrid.domain.repository.UsuarioRepository;
 import com.fiap.intelligrid.controller.request.PessoaRequest;
 import com.fiap.intelligrid.controller.request.PessoaAtualizacaoRequest;
 import com.fiap.intelligrid.controller.response.PessoaResponse;
 import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
+import com.fiap.intelligrid.exceptions.UsuarioNotFoundException;
+
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +20,11 @@ import java.util.Optional;
 public class PessoaService {
 
     private final PessoaRepository pessoaRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    public PessoaService(PessoaRepository pessoaRepository) {
+    public PessoaService(PessoaRepository pessoaRepository, UsuarioRepository usuarioRepository) {
         this.pessoaRepository = pessoaRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public List<PessoaResponse> buscarTodos() {
@@ -45,8 +50,18 @@ public class PessoaService {
 
 
     @Transactional
-    public void salvar(PessoaRequest pessoaRequest) {
-        pessoaRepository.save(new Pessoa(pessoaRequest));
+    public void salvar(PessoaRequest pessoaRequest) throws UsuarioNotFoundException {
+        var usuarioOpt = usuarioRepository.findById(pessoaRequest.usuarioId());
+
+        if (!usuarioOpt.isPresent()) {
+            throw new UsuarioNotFoundException();
+        }
+
+        var usuario = usuarioOpt.get();
+        var pessoa = new Pessoa(pessoaRequest);
+        pessoa.setUsuario(usuario);
+
+        pessoaRepository.save(pessoa);
     }
 
     public Pessoa buscarPorId(Long id) throws PessoaNotFoundException {

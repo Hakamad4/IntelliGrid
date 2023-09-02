@@ -9,6 +9,6 @@ public record UsuarioRequest(
     String login
 ) {
     public Usuario toEntity() {
-        return new Usuario(null, login);
+        return new Usuario(null, login, null);
     }
 }
