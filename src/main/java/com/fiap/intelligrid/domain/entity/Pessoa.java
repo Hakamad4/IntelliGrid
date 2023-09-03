@@ -12,13 +12,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa {
 
     @Id
@@ -46,11 +45,12 @@ public class Pessoa {
     private Usuario usuario;
 
     public Pessoa(PessoaRequest pessoaRequest) {
-        this.nome = pessoaRequest.nome();
-        this.dataNascimento = pessoaRequest.dataNascimento();
-        this.genero = pessoaRequest.genero();
-        this.email = pessoaRequest.email();
-        this.parentesco = pessoaRequest.parentesco();
+        this.ehAdmin = false;
+        this.nome = pessoaRequest.getNome();
+        this.dataNascimento = pessoaRequest.getDataNascimento();
+        this.genero = pessoaRequest.getGenero();
+        this.email = pessoaRequest.getEmail();
+        this.parentesco = pessoaRequest.getParentesco();
     }
 
     public void addEndereco(Endereco endereco) {

@@ -7,25 +7,32 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-
 //to json
-public record PessoaRequest(
-		@NotBlank
-		String nome,
-		@NotNull
-		@Past
-		LocalDate dataNascimento,
-		@NotNull
-		Genero genero,
-		@NotBlank
-		@Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
-		String email,
-		String parentesco,
-		Boolean ehAdmin,
-		Long usuarioId) {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class PessoaRequest {
+	@NotBlank
+	String nome;
+	@NotNull
+	@Past
+	LocalDate dataNascimento;
+	@NotNull
+	Genero genero;
+	@NotBlank
+	@Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
+	String email;
+	@NotBlank
+	String parentesco;
+	Long usuarioId;
 
 	public Pessoa toEntity() {
 		return new Pessoa(
@@ -35,9 +42,8 @@ public record PessoaRequest(
 				dataNascimento,
 				genero,
 				parentesco,
-				ehAdmin,
+				false,
 				null,
-				null
-		);
+				null);
 	}
 }

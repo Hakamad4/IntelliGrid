@@ -1,6 +1,7 @@
 package com.fiap.intelligrid.service;
 
 import com.fiap.intelligrid.domain.entity.Pessoa;
+import com.fiap.intelligrid.domain.entity.Usuario;
 import com.fiap.intelligrid.domain.entity.enums.Genero;
 import com.fiap.intelligrid.domain.repository.PessoaRepository;
 import com.fiap.intelligrid.domain.repository.UsuarioRepository;
@@ -51,10 +52,14 @@ public class PessoaService {
 
     @Transactional
     public void salvar(PessoaRequest pessoaRequest) throws UsuarioNotFoundException {
-        var usuarioOpt = usuarioRepository.findById(pessoaRequest.usuarioId());
 
-        if (!usuarioOpt.isPresent()) {
+        if (pessoaRequest.getUsuarioId() == null) {
             throw new UsuarioNotFoundException();
+        }
+
+        var usuarioOpt = usuarioRepository.findById(pessoaRequest.getUsuarioId());
+        if (usuarioOpt.isEmpty()) {
+            throw new UsuarioNotFoundException("Usuário Administrador não encontrado.");
         }
 
         var usuario = usuarioOpt.get();

@@ -3,12 +3,16 @@ package com.fiap.intelligrid.controller.request;
 import com.fiap.intelligrid.domain.entity.Usuario;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
-public record UsuarioRequest(
+@Getter
+@Setter
+public class UsuarioRequest extends PessoaRequest {
     @NotBlank
-    String login
-) {
+    String login;
+
     public Usuario toEntity() {
-        return new Usuario(null, login, null);
+        return new Usuario(this);
     }
 }
