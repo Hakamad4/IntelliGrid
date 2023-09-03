@@ -13,6 +13,7 @@ import com.fiap.intelligrid.exceptions.DefaultException;
 import com.fiap.intelligrid.exceptions.EnderecoForbiddenException;
 import com.fiap.intelligrid.exceptions.EnderecoNotFoundException;
 import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
+import com.fiap.intelligrid.exceptions.PessoaBadRequestException;
 import com.fiap.intelligrid.exceptions.UsuarioNotFoundException;
 
 import jakarta.transaction.Transactional;
@@ -56,10 +57,10 @@ public class PessoaService {
     }
 
     @Transactional
-    public void salvar(PessoaRequest pessoaRequest) throws UsuarioNotFoundException {
+    public void salvar(PessoaRequest pessoaRequest) throws DefaultException {
 
         if (pessoaRequest.getUsuarioId() == null) {
-            throw new UsuarioNotFoundException();
+            throw new PessoaBadRequestException("Parâmetro `usuarioId` faltando.");
         }
 
         var usuarioOpt = usuarioRepository.findById(pessoaRequest.getUsuarioId());
