@@ -1,13 +1,13 @@
 package com.fiap.intelligrid.service;
 
+import com.fiap.intelligrid.controller.request.EnderecoRequest;
+import com.fiap.intelligrid.controller.response.EnderecoResponse;
 import com.fiap.intelligrid.domain.entity.Endereco;
 import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.domain.repository.EnderecoRepository;
-import com.fiap.intelligrid.controller.request.EnderecoRequest;
-import com.fiap.intelligrid.controller.response.EnderecoResponse;
-import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
 import com.fiap.intelligrid.exceptions.EnderecoBadRequestException;
 import com.fiap.intelligrid.exceptions.EnderecoNotFoundException;
+import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
 import com.fiap.intelligrid.integration.viacep.ViaCepService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -76,5 +76,12 @@ public class EnderecoService {
 		if (deleted == 0) {
 			throw new EnderecoNotFoundException("Endereço não encontrado");
 		}
+	}
+
+    public List<EnderecoResponse> buscaFiltrada(String bairro, String cidade, String logradouro, String cep) {
+
+		return enderecoRepository.findByRuaBairroCidadeCep(logradouro, bairro, cidade, cep).stream()
+				 .map(EnderecoResponse::new)
+				 .toList();
 	}
 }

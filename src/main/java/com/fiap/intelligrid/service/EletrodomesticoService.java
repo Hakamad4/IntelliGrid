@@ -74,4 +74,10 @@ public class EletrodomesticoService {
         }
         return new EletrodomesticoResponse(eletrodomestico);
     }
+
+    public List<Eletrodomestico> buscaFiltrada(String nome, String modelo, String potencia) {
+
+		return eletrodomesticoRepository.findByNomeModeloPotencia(nome, modelo, potencia);
+
+	}
 }

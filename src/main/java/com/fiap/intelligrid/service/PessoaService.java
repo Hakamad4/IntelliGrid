@@ -1,5 +1,6 @@
 package com.fiap.intelligrid.service;
 
+import com.fiap.intelligrid.domain.entity.Genero;
 import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.domain.repository.PessoaRepository;
 import com.fiap.intelligrid.controller.request.PessoaRequest;
@@ -24,6 +25,24 @@ public class PessoaService {
     public List<PessoaResponse> buscarTodos() {
         return pessoaRepository.findAll().stream().map(PessoaResponse::new).toList();
     }
+
+    //TODO grau de parentesco na pessoa
+    public List<PessoaResponse> buscaFiltrada(String nome, String sexo) {
+        Genero genero = null;
+
+        if (sexo != null && !sexo.isEmpty()) {
+            try {
+                genero = Genero.valueOf(sexo.toUpperCase());
+            } catch (IllegalArgumentException ex) {
+                //TODO trocar exceção
+               throw new IllegalArgumentException("Sexo inválido");
+            }
+        }
+        return pessoaRepository.findByNomeSexo(nome, genero).stream()
+                .map(PessoaResponse::new)
+                .toList();
+    }
+
 
     @Transactional
     public void salvar(PessoaRequest pessoaRequest) {
