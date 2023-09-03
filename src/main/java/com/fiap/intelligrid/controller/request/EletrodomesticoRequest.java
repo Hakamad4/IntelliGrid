@@ -10,24 +10,20 @@ import jakarta.validation.constraints.NotNull;
 
 //to json
 public record EletrodomesticoRequest(
-		   
-		    Long id,
-			@NotBlank
-			String nome,
-			@NotBlank
-			String modelo,
-			@NotNull
-			double potencia,
-			List<Consumo> consumos) {
 
-		public Eletrodomestico toEntity() {
-			return new Eletrodomestico(
-					null,
-					nome,
-					modelo,
-					potencia,
-					consumos
-					
-			);
-		}
+		Long id,
+		@NotBlank String nome,
+		@NotBlank String modelo,
+		@NotNull double potencia,
+		List<Consumo> consumos) {
+
+	public Eletrodomestico toEntity() {
+		return new Eletrodomestico(
+				null,
+				nome,
+				modelo,
+				potencia,
+				consumos,
+				null);
+	}
 }

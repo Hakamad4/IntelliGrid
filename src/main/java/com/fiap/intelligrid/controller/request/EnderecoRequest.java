@@ -31,6 +31,7 @@ public record EnderecoRequest(
 				cidade,
 				estado,
 				complemento,
+				null,
 				null
 		);
 	}

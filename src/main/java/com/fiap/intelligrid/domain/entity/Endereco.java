@@ -41,7 +41,20 @@ public class Endereco implements Serializable {
 	@Column(name = "complemento")
 	private String complemento;
 
-	@ManyToMany(mappedBy = "enderecos", cascade = { CascadeType.MERGE })
+	@ManyToMany(mappedBy = "enderecos", cascade = CascadeType.MERGE)
 	private List<Pessoa> pessoas = new ArrayList<>();
+
+	@OneToMany(mappedBy = "endereco", cascade = CascadeType.ALL)
+    private List<Eletrodomestico> eletrodomesticos = new ArrayList<>();
+
+	public void addEletrodomestico(Eletrodomestico eletrodomestico) {
+        this.eletrodomesticos.add(eletrodomestico);
+        eletrodomestico.setEndereco(this);
+    }
+
+	public void removerEletrodomestico(Eletrodomestico eletrodomestico) {
+		this.eletrodomesticos.remove(eletrodomestico);
+		eletrodomestico.setEndereco(null);
+	}
 
 }

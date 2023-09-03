@@ -12,6 +12,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,9 +35,14 @@ public class Eletrodomestico {
 	private String nome;
 	private String modelo;
 	private double potencia;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "eletrodomestico" , fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private List<Consumo> consumos = new ArrayList<>();
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "endereco_id")
+    private Endereco endereco;
 
 	public Eletrodomestico(EletrodomesticoRequest eletroeletronicoRequest) {
 		this.nome = eletroeletronicoRequest.nome();
