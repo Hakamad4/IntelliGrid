@@ -1,8 +1,5 @@
 package com.fiap.intelligrid.controller.response;
 
-import java.util.List;
-
-import com.fiap.intelligrid.domain.entity.Consumo;
 import com.fiap.intelligrid.domain.entity.Eletrodomestico;
 
 

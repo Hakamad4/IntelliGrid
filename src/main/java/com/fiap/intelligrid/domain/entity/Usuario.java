@@ -32,9 +32,10 @@ public class Usuario extends Pessoa {
         super(id, nome, email, dataNascimento, genero, parentesco, true, enderecos, usuario);
         this.login = login;
     }
-  
+
     public Usuario(UsuarioRequest req) {
-        super(null, req.getNome(), req.getEmail(), req.getDataNascimento(), req.getGenero(), req.getParentesco(), true, null, null);
+        super(null, req.getNome(), req.getEmail(), req.getDataNascimento(), req.getGenero(), req.getParentesco(), true,
+                null, null);
         this.login = req.getLogin();
     }
 

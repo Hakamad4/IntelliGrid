@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fiap.intelligrid.controller.request.ConsumoAtualizacaoRequest;
 import com.fiap.intelligrid.controller.request.ConsumoRequest;
 import com.fiap.intelligrid.controller.response.ConsumoResponse;
-import com.fiap.intelligrid.domain.entity.Consumo;
 import com.fiap.intelligrid.exceptions.ConsumoBadRequestException;
 import com.fiap.intelligrid.exceptions.ConsumoNotFoundException;
 import com.fiap.intelligrid.exceptions.EletrodomesticoNotFoundException;

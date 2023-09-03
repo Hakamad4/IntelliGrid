@@ -8,7 +8,6 @@ import com.fiap.intelligrid.domain.entity.Eletrodomestico;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-
 //to json
 public record EletrodomesticoRequest(
 		   
@@ -31,6 +30,4 @@ public record EletrodomesticoRequest(
 					
 			);
 		}
-		
-		
 }

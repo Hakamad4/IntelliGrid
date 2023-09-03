@@ -40,8 +40,7 @@ public class PessoaService {
             try {
                 genero = Genero.valueOf(sexo.toUpperCase());
             } catch (IllegalArgumentException ex) {
-                //TODO trocar exceção
-               throw new IllegalArgumentException("Sexo inválido");
+                throw new IllegalArgumentException("Gênero inválido");
             }
         }
         return pessoaRepository.findByNomeSexo(nome, genero).stream()

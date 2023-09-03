@@ -20,6 +20,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PessoaRequest {
+	// Parâmetros da Entidade
 	@NotBlank
 	String nome;
 	@NotNull
@@ -32,6 +33,8 @@ public class PessoaRequest {
 	String email;
 	@NotBlank
 	String parentesco;
+
+	// Outros parâmetros
 	Long usuarioId;
 
 	public Pessoa toEntity() {

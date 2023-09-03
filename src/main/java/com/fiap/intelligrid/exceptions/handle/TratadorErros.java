@@ -26,14 +26,14 @@ public class TratadorErros {
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity tratarErroGenerico(Exception ex) {
+	public ResponseEntity<String> tratarErroGenerico(Exception ex) {
 		return ResponseEntity
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body("Erro: " + ex.getLocalizedMessage());
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity tratarErroValidation(MethodArgumentNotValidException ex) {
+	public ResponseEntity<ErrorResponse> tratarErroValidation(MethodArgumentNotValidException ex) {
 		List<FieldError> erros = ex.getFieldErrors();
 
 		return ResponseEntity
