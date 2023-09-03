@@ -46,6 +46,8 @@ public class EnderecoService {
 
 	@Transactional
 	public void create(EnderecoRequest enderecoRequest) throws EnderecoBadRequestException {
+		// TODO: associar Endereço ao Admin
+		
 		try {
 			enderecoRepository.save(enderecoRequest.toEntity());
 		} catch (Exception e) {
@@ -78,10 +80,9 @@ public class EnderecoService {
 		}
 	}
 
-    public List<EnderecoResponse> buscaFiltrada(String bairro, String cidade, String logradouro, String cep) {
-
+	public List<EnderecoResponse> buscaFiltrada(String bairro, String cidade, String logradouro, String cep) {
 		return enderecoRepository.findByRuaBairroCidadeCep(logradouro, bairro, cidade, cep).stream()
-				 .map(EnderecoResponse::new)
-				 .toList();
+				.map(EnderecoResponse::new)
+				.toList();
 	}
 }

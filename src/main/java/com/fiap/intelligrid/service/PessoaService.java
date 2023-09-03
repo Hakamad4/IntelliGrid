@@ -1,17 +1,22 @@
 package com.fiap.intelligrid.service;
 
 import com.fiap.intelligrid.domain.entity.Pessoa;
-import com.fiap.intelligrid.domain.entity.Usuario;
 import com.fiap.intelligrid.domain.entity.enums.Genero;
+import com.fiap.intelligrid.domain.repository.EnderecoRepository;
 import com.fiap.intelligrid.domain.repository.PessoaRepository;
 import com.fiap.intelligrid.domain.repository.UsuarioRepository;
 import com.fiap.intelligrid.controller.request.PessoaRequest;
 import com.fiap.intelligrid.controller.request.PessoaAtualizacaoRequest;
 import com.fiap.intelligrid.controller.response.PessoaResponse;
+import com.fiap.intelligrid.controller.response.PessoaResponseComEndereco;
+import com.fiap.intelligrid.exceptions.DefaultException;
+import com.fiap.intelligrid.exceptions.EnderecoForbiddenException;
+import com.fiap.intelligrid.exceptions.EnderecoNotFoundException;
 import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
 import com.fiap.intelligrid.exceptions.UsuarioNotFoundException;
 
 import jakarta.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,19 +26,21 @@ import java.util.Optional;
 public class PessoaService {
 
     private final PessoaRepository pessoaRepository;
+    private final EnderecoRepository enderecoRepository;
     private final UsuarioRepository usuarioRepository;
 
-    public PessoaService(PessoaRepository pessoaRepository, UsuarioRepository usuarioRepository) {
+    public PessoaService(PessoaRepository pessoaRepository, EnderecoRepository enderecoRepository,
+            UsuarioRepository usuarioRepository) {
         this.pessoaRepository = pessoaRepository;
+        this.enderecoRepository = enderecoRepository;
         this.usuarioRepository = usuarioRepository;
     }
 
-    public List<PessoaResponse> buscarTodos() {
-        return pessoaRepository.findAll().stream().map(PessoaResponse::new).toList();
+    public List<PessoaResponseComEndereco> buscarTodos() {
+        return pessoaRepository.findAll().stream().map(PessoaResponseComEndereco::new).toList();
     }
 
-    //TODO grau de parentesco na pessoa
-    public List<PessoaResponse> buscaFiltrada(String nome, String sexo) {
+    public List<PessoaResponseComEndereco> buscaFiltrada(String nome, String sexo) {
         Genero genero = null;
 
         if (sexo != null && !sexo.isEmpty()) {
@@ -44,10 +51,9 @@ public class PessoaService {
             }
         }
         return pessoaRepository.findByNomeSexo(nome, genero).stream()
-                .map(PessoaResponse::new)
+                .map(PessoaResponseComEndereco::new)
                 .toList();
     }
-
 
     @Transactional
     public void salvar(PessoaRequest pessoaRequest) throws UsuarioNotFoundException {
@@ -76,10 +82,9 @@ public class PessoaService {
         return pessoa.get();
     }
 
-    public PessoaResponse buscarResponsePorId(Long id) throws PessoaNotFoundException {
-        return new PessoaResponse(
-                buscarPorId(id)
-        );
+    public PessoaResponseComEndereco buscarResponsePorId(Long id) throws PessoaNotFoundException {
+        return new PessoaResponseComEndereco(
+                buscarPorId(id));
     }
 
     @Transactional
@@ -91,7 +96,8 @@ public class PessoaService {
     }
 
     @Transactional
-    public PessoaResponse atualizarPessoa(Long id, PessoaAtualizacaoRequest dadosAtualizacao) throws PessoaNotFoundException {
+    public PessoaResponse atualizarPessoa(Long id, PessoaAtualizacaoRequest dadosAtualizacao)
+            throws PessoaNotFoundException {
         Pessoa pessoa = buscarPorId(id);
 
         if (dadosAtualizacao.nome() != null) {
@@ -102,5 +108,33 @@ public class PessoaService {
         }
 
         return new PessoaResponse(pessoa);
+    }
+
+    @Transactional
+    public void adicionarEndereco(Long idPessoa, Long idEndereco) throws DefaultException {
+        var pessoa = buscarPorId(idPessoa);
+
+        var enderecoOpt = enderecoRepository.findById(idEndereco);
+        if (enderecoOpt.isEmpty()) {
+            throw new EnderecoNotFoundException();
+        }
+        var endereco = enderecoOpt.get();
+
+        pessoa.getEnderecos().add(endereco);
+    }
+
+    @Transactional
+    public void removerEndereco(Long idPessoa, Long idEndereco) throws DefaultException {
+        var pessoa = buscarPorId(idPessoa);
+        if (pessoa.getEhAdmin()) {
+            throw new EnderecoForbiddenException("Não é possível remover endereços de um Admin.");
+        }
+
+        var temEndereco = pessoa.getEnderecos().stream().filter(end -> end.getId() == idEndereco).findAny();
+        if (temEndereco.isEmpty()) {
+            throw new EnderecoNotFoundException("Endereço já removido.");
+        }
+
+        pessoa.getEnderecos().remove(temEndereco.get());
     }
 }

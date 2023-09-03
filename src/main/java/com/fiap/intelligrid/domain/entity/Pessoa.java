@@ -37,7 +37,10 @@ public class Pessoa {
 
     private Boolean ehAdmin;
 
-    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(cascade = { CascadeType.MERGE })
+    @JoinTable(name = "pessoa_endereco",
+        joinColumns = @JoinColumn(name = "pessoa_id"),
+        inverseJoinColumns = @JoinColumn(name = "endereco_id"))
     private List<Endereco> enderecos = new ArrayList<>();
 
     @ManyToOne
@@ -52,10 +55,4 @@ public class Pessoa {
         this.email = pessoaRequest.getEmail();
         this.parentesco = pessoaRequest.getParentesco();
     }
-
-    public void addEndereco(Endereco endereco) {
-        this.enderecos.add(endereco);
-        endereco.setPessoa(this);
-    }
-
 }
