@@ -1,5 +1,6 @@
 package com.fiap.intelligrid.controller.request;
 
+import com.fiap.intelligrid.config.Regexes;
 import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.domain.entity.enums.Genero;
 
@@ -29,7 +30,7 @@ public class PessoaRequest {
 	@NotNull
 	Genero genero;
 	@NotBlank
-	@Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
+	@Email(regexp = Regexes.EMAIL_VALIDATION)
 	String email;
 	@NotBlank
 	String parentesco;
