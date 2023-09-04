@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.fiap.intelligrid.controller.request.UsuarioAtualizacaoRequest;
 import com.fiap.intelligrid.controller.request.UsuarioRequest;
 import com.fiap.intelligrid.controller.response.UsuarioResponse;
 import com.fiap.intelligrid.domain.entity.Pessoa;
 import com.fiap.intelligrid.domain.entity.Usuario;
 import com.fiap.intelligrid.domain.repository.UsuarioRepository;
+import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
 import com.fiap.intelligrid.exceptions.UsuarioNotFoundException;
 
 import jakarta.transaction.Transactional;
@@ -16,9 +18,11 @@ import jakarta.transaction.Transactional;
 @Service
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
+    private final PessoaService pessoaService;
 
-    public UsuarioService(UsuarioRepository usuarioRepository) {
+    public UsuarioService(UsuarioRepository usuarioRepository, PessoaService pessoaService) {
         this.usuarioRepository = usuarioRepository;
+        this.pessoaService = pessoaService;
     }
 
     public Usuario buscarEntity(Long id) throws UsuarioNotFoundException {
@@ -40,11 +44,12 @@ public class UsuarioService {
     }
 
     @Transactional
-    public UsuarioResponse atualizar(Long id, UsuarioRequest req) throws UsuarioNotFoundException {
+    public UsuarioResponse atualizar(Long id, UsuarioAtualizacaoRequest req) throws UsuarioNotFoundException, PessoaNotFoundException {
         var usuario = buscarEntity(id);
         if (req.getLogin() != null) {
             usuario.setLogin(req.getLogin());
         }
+        pessoaService.atualizarPessoa(id, req);
         return new UsuarioResponse(usuario);
     }
 

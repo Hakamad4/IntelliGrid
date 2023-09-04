@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fiap.intelligrid.controller.request.UsuarioAtualizacaoRequest;
 import com.fiap.intelligrid.controller.request.UsuarioRequest;
 import com.fiap.intelligrid.controller.response.UsuarioResponse;
+import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
 import com.fiap.intelligrid.exceptions.UsuarioNotFoundException;
 import com.fiap.intelligrid.service.UsuarioService;
 
@@ -47,8 +49,9 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UsuarioResponse> atualizar(@PathVariable Long id, @RequestBody @Valid UsuarioRequest req)
-            throws UsuarioNotFoundException {
+    public ResponseEntity<UsuarioResponse> atualizar(@PathVariable Long id,
+            @RequestBody @Valid UsuarioAtualizacaoRequest req)
+            throws UsuarioNotFoundException, PessoaNotFoundException {
         return ResponseEntity.ok(usuarioService.atualizar(id, req));
     }
 

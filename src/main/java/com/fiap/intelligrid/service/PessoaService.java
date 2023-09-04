@@ -101,11 +101,20 @@ public class PessoaService {
             throws PessoaNotFoundException {
         Pessoa pessoa = buscarPorId(id);
 
-        if (dadosAtualizacao.nome() != null) {
-            pessoa.setNome(dadosAtualizacao.nome());
+        if (dadosAtualizacao.getNome() != null) {
+            pessoa.setNome(dadosAtualizacao.getNome());
         }
-        if (dadosAtualizacao.email() != null) {
-            pessoa.setEmail(dadosAtualizacao.email());
+        if (dadosAtualizacao.getEmail() != null) {
+            pessoa.setEmail(dadosAtualizacao.getEmail());
+        }
+        if (dadosAtualizacao.getDataNascimento() != null) {
+            pessoa.setDataNascimento(dadosAtualizacao.getDataNascimento());
+        }
+        if (dadosAtualizacao.getGenero() != null) {
+            pessoa.setGenero(dadosAtualizacao.getGenero());
+        }
+        if (dadosAtualizacao.getParentesco() != null) {
+            pessoa.setParentesco(dadosAtualizacao.getParentesco());
         }
 
         return new PessoaResponse(pessoa);
