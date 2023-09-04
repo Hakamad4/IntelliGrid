@@ -1,19 +1,19 @@
 package com.fiap.intelligrid.domain.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "endereco")
 @Getter
 @Setter
 @EqualsAndHashCode
-@AllArgsConstructor 
+@AllArgsConstructor
 @NoArgsConstructor
-
 public class Endereco implements Serializable {
 
 	@Id
@@ -41,8 +41,20 @@ public class Endereco implements Serializable {
 	@Column(name = "complemento")
 	private String complemento;
 
-	@JoinColumn(name = "pessoa_id")
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Pessoa pessoa;
+	@ManyToMany(mappedBy = "enderecos", cascade = CascadeType.MERGE)
+	private List<Pessoa> pessoas = new ArrayList<>();
+
+	@OneToMany(mappedBy = "endereco", cascade = CascadeType.ALL)
+    private List<Eletrodomestico> eletrodomesticos = new ArrayList<>();
+
+	public void addEletrodomestico(Eletrodomestico eletrodomestico) {
+        this.eletrodomesticos.add(eletrodomestico);
+        eletrodomestico.setEndereco(this);
+    }
+
+	public void removerEletrodomestico(Eletrodomestico eletrodomestico) {
+		this.eletrodomesticos.remove(eletrodomestico);
+		eletrodomestico.setEndereco(null);
+	}
 
 }

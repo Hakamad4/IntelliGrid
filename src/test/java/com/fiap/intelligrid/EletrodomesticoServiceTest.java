@@ -35,14 +35,14 @@ public class EletrodomesticoServiceTest {
     @Test
     @Transactional
     public void deveSalvarEletrodomestico() {
-        EletrodomesticoRequest eletrodomesticoRequest = new EletrodomesticoRequest(null,"teste","arno","220");
+        EletrodomesticoRequest eletrodomesticoRequest = new EletrodomesticoRequest(null,"teste","arno",20.00,null);
         eletrodomesticoService.salvar(eletrodomesticoRequest);
         verify(eletrodomesticoRepository,times(1)).save(Mockito.any(Eletrodomestico.class));
     }
 
     @Test
     public void deveBuscarEletrodomesticoPorId() throws Exception {
-        Eletrodomestico eletrodomestico = new Eletrodomestico(1L,"teste","arno","220");
+        Eletrodomestico eletrodomestico = new Eletrodomestico(1L, "teste", "arno", 22.00, null, null);
         when(eletrodomesticoRepository.findById(anyLong())).thenReturn(Optional.of(eletrodomestico));
         Eletrodomestico resultado = eletrodomesticoService.buscarPorId(1L);
         Assertions.assertEquals(eletrodomestico,resultado);
@@ -59,7 +59,7 @@ public class EletrodomesticoServiceTest {
 
     @Test
     public void deveBuscarResponsePorId() throws Exception {
-        Eletrodomestico eletrodomestico = new Eletrodomestico(1L, "teste", "arno", "220");
+        Eletrodomestico eletrodomestico = new Eletrodomestico(1L, "teste", "arno", 22.00, null, null);
 
         when(eletrodomesticoRepository.findById(anyLong())).thenReturn(Optional.of(eletrodomestico));
         EletrodomesticoResponse resultado = eletrodomesticoService.buscarResponsePorId(1L);
@@ -83,9 +83,9 @@ public class EletrodomesticoServiceTest {
     public void deveRetornarTodosEletrodomesticos() {
 
         List<Eletrodomestico> eletrodomesticos = new ArrayList<>();
-        eletrodomesticos.add(new Eletrodomestico(1L, "teste1", "arno", "220"));
-        eletrodomesticos.add(new Eletrodomestico(2L, "teste2", "arno", "110"));
-        eletrodomesticos.add(new Eletrodomestico(3L, "teste3", "arno", "110"));
+        eletrodomesticos.add(new Eletrodomestico(1L, "teste1", "arno", 22.00, null, null));
+        eletrodomesticos.add(new Eletrodomestico(2L, "teste2", "arno", 22.00, null, null));
+        eletrodomesticos.add(new Eletrodomestico(3L, "teste3", "arno", 22.00, null, null));
 
         when(eletrodomesticoRepository.findAll()).thenReturn(eletrodomesticos);
 
@@ -129,11 +129,11 @@ public class EletrodomesticoServiceTest {
     @Test
     public void testAtualizaEletrodomestico() throws Exception {
 
-        Eletrodomestico eletrodomestico = new Eletrodomestico(1L, "teste 1", "arno", "220");
+        Eletrodomestico eletrodomestico = new Eletrodomestico(1L, "teste 1", "arno", 22.00, null, null);
 
         when(eletrodomesticoRepository.findById(anyLong())).thenReturn(Optional.of(eletrodomestico));
 
-        EletrodomesticoAtualizacaoRequest dadosAtualizacao = new EletrodomesticoAtualizacaoRequest("teste 1", "arno", "220");
+        EletrodomesticoAtualizacaoRequest dadosAtualizacao = new EletrodomesticoAtualizacaoRequest("teste 1", "arno", 22.00,null);
 
         EletrodomesticoResponse resultado = eletrodomesticoService.atualizaEletrodomestico(1L, dadosAtualizacao);
 

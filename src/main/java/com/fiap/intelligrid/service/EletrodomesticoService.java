@@ -41,6 +41,12 @@ public class EletrodomesticoService {
                 buscarPorId(id)
         );
     }
+    
+    public EletrodomesticoResponse buscarResponsePorPeriodoId(Long id) throws EletrodomesticoNotFoundException {
+        return new EletrodomesticoResponse(
+                buscarPorId(id)
+        );
+    }
 
     public List<EletrodomesticoResponse> buscarTodos() {
         return eletrodomesticoRepository.findAll().stream().map(EletrodomesticoResponse::new).toList();
@@ -63,9 +69,15 @@ public class EletrodomesticoService {
         if (dadosAtualizacao.modelo() != null) {
             eletrodomestico.setModelo(dadosAtualizacao.modelo());
         }
-        if (dadosAtualizacao.potencia() != null) {
+        if (dadosAtualizacao.potencia() != 0) {
             eletrodomestico.setPotencia(dadosAtualizacao.potencia());
         }
         return new EletrodomesticoResponse(eletrodomestico);
     }
+
+    public List<Eletrodomestico> buscaFiltrada(String nome, String modelo, String potencia) {
+
+		return eletrodomesticoRepository.findByNomeModeloPotencia(nome, modelo, potencia);
+
+	}
 }

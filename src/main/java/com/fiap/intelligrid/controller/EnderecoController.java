@@ -1,10 +1,12 @@
 package com.fiap.intelligrid.controller;
 
 import com.fiap.intelligrid.exceptions.PessoaNotFoundException;
+import com.fiap.intelligrid.exceptions.DefaultException;
 import com.fiap.intelligrid.exceptions.EnderecoBadRequestException;
 import com.fiap.intelligrid.exceptions.EnderecoNotFoundException;
 import com.fiap.intelligrid.controller.request.EnderecoRequest;
 import com.fiap.intelligrid.controller.response.EnderecoResponse;
+import com.fiap.intelligrid.controller.response.EnderecoResponseComEletrodomestico;
 import com.fiap.intelligrid.service.EnderecoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -29,12 +31,21 @@ public class EnderecoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<EnderecoResponse> fetchById(@PathVariable Long id) throws EnderecoNotFoundException {
+	public ResponseEntity<EnderecoResponseComEletrodomestico> fetchById(@PathVariable Long id) throws EnderecoNotFoundException {
 		return ResponseEntity.ok(enderecoService.buscarPorId(id));
 	}
 
+	@GetMapping
+	public ResponseEntity<List<EnderecoResponse>> buscaFiltrada(@RequestParam(required = false) String bairro,
+																@RequestParam(required = false) String cidade,
+																@RequestParam(required = false) String logradouro,
+																@RequestParam(required = false) String cep) {
+
+		return ResponseEntity.ok(enderecoService.buscaFiltrada(bairro, cidade, logradouro, cep));
+	}
+
 	@GetMapping("/pessoa/{pessoaId}")
-	public ResponseEntity<List<EnderecoResponse>> fetchByPerson(@PathVariable Long pessoaId) throws PessoaNotFoundException {
+	public ResponseEntity<List<EnderecoResponseComEletrodomestico>> fetchByPerson(@PathVariable Long pessoaId) throws PessoaNotFoundException {
 		return ResponseEntity.ok(enderecoService.buscarPorPessoa(pessoaId));
 	}
 
@@ -55,4 +66,18 @@ public class EnderecoController {
 		enderecoService.delete(id);
 		return ResponseEntity.ok().build();
 	}
+
+	@PutMapping("/{idEndereco}/eletrodomestico/{idEletrodomestico}")
+    public ResponseEntity<Void> incluirEndereco(@PathVariable Long idEndereco, @PathVariable Long idEletrodomestico)
+            throws DefaultException {
+        enderecoService.adicionarEletrodomestico(idEndereco, idEletrodomestico);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{idEndereco}/eletrodomestico/{idEletrodomestico}")
+    public ResponseEntity<Void> removeEndereco(@PathVariable Long idEndereco, @PathVariable Long idEletrodomestico)
+            throws DefaultException {
+        enderecoService.removerEletrodomestico(idEndereco, idEletrodomestico);
+        return ResponseEntity.ok().build();
+    }
 }

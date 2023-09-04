@@ -1,5 +1,9 @@
 package com.fiap.intelligrid.controller.request;
 
-public record EletrodomesticoAtualizacaoRequest(String nome , String modelo, String potencia) {
+import java.util.List;
+
+import com.fiap.intelligrid.domain.entity.Consumo;
+
+public record EletrodomesticoAtualizacaoRequest(String nome , String modelo, double potencia, List<Consumo> consumos) {
 
 }
