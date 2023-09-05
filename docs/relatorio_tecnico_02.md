@@ -38,20 +38,20 @@ Com base em Event Storming, identificamos os comandos geradores de eventos e seu
 
 O primeiro diagrama (Figura 1) descreve em alto nível o funcionamento de nosso produto, representando como será realizada a medição e o cálculo do consumo. Nesta história, temos que nossos adaptadores se conectam aos eletrodomésticos do cliente e fazem a medição do tempo de utilização e seu envio ao *backend*, a partir das informações já cadastradas em banco de dados da potência nominal dos equipamentos, conseguimos realizar o cálculo da estimativa de consumo.
 
-<center>Fig. 1: Fluxo do Produto e Cálculo de Consumo</center>
+<p align="center">Fig. 1: Fluxo do Produto e Cálculo de Consumo</p>
 
 ![](imgs/calculo_consumo.png)
 
-<center>Fonte: Produção dos autores, 2023.</center>
+<p align="center">Fonte: Produção dos autores, 2023.</p>
 <br>
 
 O próximo fluxo representa o comportamento dos atores, figura 2. No qual, haverá um usuário responsável pela administração do sistema e que terá permissões para executar as atividades de cadastro de pessoas ligadas ao seu fluxo familiar, eletrodomésticos e os endereços aos quais se encontram. Além disso, essas outras pessoas podem gerenciar alguns aspectos dos objetos como a atualização de informações e a visualização de dados históricos de consumo.
 
-<center>Fig. 2: Fluxo de Cadastro</center>
+<p align="center">Fig. 2: Fluxo de Cadastro</center>
 
 ![](imgs/fluxo_cadastro.png)
 
-<center>Fonte: Produção dos autores, 2023.</center>
+<p align="center">Fonte: Produção dos autores, 2023.</p>
 <br>
 
 Por fim, conceitualizamos o fluxo do usuário na aplicação e os acessos que serão realizados em nossa API. Neste temos que a entrada do processo é o login, caso não seja bem sucedido, o usuário terá a opção de se registrar. Em caso de sucesso, a aplicação o redirecioará para a escolha do perfil, em que ele irá se identificar como uma das pessoas cadastradas no sistema. Em caso de ser um administrador, ele poderá efetuar cadastros, atualizações e visualização de todos os dados de seu núcleo familiar.
@@ -67,11 +67,11 @@ Por fim, conceitualizamos o fluxo do usuário na aplicação e os acessos que se
 
 Nesta fase, foi solicitada a inclusão de relacionamentos nas três entidades anteriormente criadas: Pessoa, Endereço e Eletrodoméstico. Além destas, também adicionamos as classes Usuário e Consumo, que serão responsáveis pelo gerenciamento das pessoas e do monitoramento dos eletrodomésticos, respectivamente. A partir das histórias e fluxos montados, criamos o diagrama de Entidade-Relacionamento da Figura 4 para descrever a estrutura do banco de dados.
 
-<center>Fig. 4: Diagrama Entidade-Relacionamento</center>
+<p align="center">Fig. 4: Diagrama Entidade-Relacionamento</p>
 
 ![](imgs/Diagrama_ER.png)
 
-<center>Fonte: Produção dos autores, 2023.</center>
+<p align="center">Fonte: Produção dos autores, 2023.</p>
 <br>
 
 Os pontos de destaque da estrutura acima são o relacionamento N:N entre Pessoa e Endereço e a especialização de **Pessoa** em **Usuário**. O primeiro foi escolhido pois tratamos o cadastro de pessoas como perfis de acesso, em que uma pessoa pode acompanha as informações de mais de um endereço. Por sua vez, optamos por especializar o **Usuário** a partir da entidade **Pessoa** para aumentar o desafio técnico da implementação.
