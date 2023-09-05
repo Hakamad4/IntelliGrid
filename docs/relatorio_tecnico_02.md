@@ -56,6 +56,13 @@ O próximo fluxo representa o comportamento dos atores, figura 2. No qual, haver
 
 Por fim, conceitualizamos o fluxo do usuário na aplicação e os acessos que serão realizados em nossa API. Neste temos que a entrada do processo é o login, caso não seja bem sucedido, o usuário terá a opção de se registrar. Em caso de sucesso, a aplicação o redirecioará para a escolha do perfil, em que ele irá se identificar como uma das pessoas cadastradas no sistema. Em caso de ser um administrador, ele poderá efetuar cadastros, atualizações e visualização de todos os dados de seu núcleo familiar.
 
+<p align="center">Fig. 3: Fluxo do Usuário</p>
+
+![](imgs/fluxo_usuario.png)
+
+<p align="center">Fonte: Produção dos autores, 2023.</p>
+<br>
+
 ### Banco de dados e Relacionamentos
 
 Nesta fase, foi solicitada a inclusão de relacionamentos nas três entidades anteriormente criadas: Pessoa, Endereço e Eletrodoméstico. Além destas, também adicionamos as classes Usuário e Consumo, que serão responsáveis pelo gerenciamento das pessoas e do monitoramento dos eletrodomésticos, respectivamente. A partir das histórias e fluxos montados, criamos o diagrama de Entidade-Relacionamento da Figura 4 para descrever a estrutura do banco de dados.
