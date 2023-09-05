@@ -28,6 +28,8 @@ Abaixo estão os links para os relatórios técnicos de cada fase do projeto.
 
 [Fase 01](https://github.com/Hakamad4/IntelliGrid/blob/main/docs/relatorio_tecnico_01.md)
 
+[Fase 02](https://github.com/Hakamad4/IntelliGrid/blob/main/docs/relatorio_tecnico_02.md)
+
 
 
 ### 📋 Pré-requisitos

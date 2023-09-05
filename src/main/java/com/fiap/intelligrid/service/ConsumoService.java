@@ -33,7 +33,6 @@ public class ConsumoService {
 	
 	@Transactional
 	public void salvar(ConsumoRequest consumoRequest) throws EletrodomesticoNotFoundException {
-	
 		
 		System.out.println("consumoRequest eletrodomesticoId\n"+consumoRequest.eletrodomesticoId()+"\n");
 		
